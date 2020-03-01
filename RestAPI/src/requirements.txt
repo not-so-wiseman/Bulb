@@ -1,0 +1,4 @@
+requests
+d2lvalence.auth
+os
+flask
