@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import OS
+=======
+import os
+>>>>>>> master
 
 # To do: 
 # replace values with environment variables
