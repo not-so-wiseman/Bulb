@@ -1,19 +1,18 @@
-import d2lvalence.auth as d2lauth
-from flask import Flask, Response, redirect, request
 import requests
-import 
+import json
+from flask import Flask, Response, redirect, request
+
+from LampAPI.lamp import LampAPI
 
 app = Flask(__name__)
+api = LampAPI()
 
-print(auth_url)
-@app.route('/login', methods=['POST'])
+@app.route('/auth', methods=['GET'])
+def authenticate():
+    redirect_url = api.get_auth_url()
+    return redirect(redirect_url, code=302)
+
+@app.route('/login', methods=['GET'])
 def login():
-    print("hi")
-    """
-    redirect_url = 'https://muntest.brightspace.com/d2l/auth/api/token?x_a=rumLdUKs14G5okboyjFkmQ&x_b=QiAsfBfJL_TkyDzWW02xLU3j1X2JECICnUAkFyxrEKM&x_target=http%3A%2F%2Flocalhost%3A8080'
-    user_session = APP_CONTEXT.create_user_context(result_uri=redirect_url, host=HOST, encrypt_requests=True)
-    
-    route = '/d2l/api/versions/'
-    url = user_session.create_authenticated_url(route)
-    r = requests.get(url)
-    """
+    return json.dumps(api.get_auth_url())
+   
