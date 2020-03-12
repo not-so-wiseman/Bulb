@@ -1,5 +1,5 @@
 import requests
 
-url = requests.get('http://127.0.0.1:5000/login')
+url = requests.get('https://www.blub.tech/login')
 print(url.text)
 
