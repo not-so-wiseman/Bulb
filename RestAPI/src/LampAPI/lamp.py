@@ -1,7 +1,7 @@
 import d2lvalence.auth as d2lauth
 import requests
 
-import LampAPI.config as config
+import config
 
 class LampAPI:
     def __init__(self):
