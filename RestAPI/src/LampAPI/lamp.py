@@ -1,14 +1,15 @@
 import d2lvalence.auth as d2lauth
-import requests
+import requests, os
 
-import config
+from .config import Config
 
-class LampAPI:
+class Lamp:
     def __init__(self):
-        self.host = config.host
+        config = Config()
+        self.host = config.get_host()
         self._app_context = d2lauth.fashion_app_context(
-            app_id = config.app_id,
-            app_key = config.app_key
+            app_id = config.get_id(),
+            app_key = config.get_key()
         )
         
     def get_auth_url(self):

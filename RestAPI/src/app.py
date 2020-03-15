@@ -2,10 +2,11 @@ import requests
 import json
 from flask import Flask, Response, redirect, request
 
-from LampAPI.lamp import LampAPI
+
+from .LampAPI.lamp import Lamp
 
 app = Flask(__name__)
-api = LampAPI()
+api = Lamp()
 
 @app.route('/auth', methods=['GET'])
 def authenticate():
