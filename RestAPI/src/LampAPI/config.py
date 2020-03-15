@@ -5,7 +5,7 @@ import os
 class Config:
     def __init__(self):
         self._host = 'muntest.brightspace.com'
-        self._target = 'https://blub.tech' 
+        self._target = 'https://blub.tech/login' 
         self._app_id = 'rumLdUKs14G5okboyjFkmQ' 
         self._app_key = 'UL_WoG-mxZNO_vgS0ooGQg' 
 
