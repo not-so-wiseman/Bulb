@@ -9,7 +9,7 @@ app = Flask(__name__)
 api = Lamp()
 
 @app.route('/', methods=['GET'])
-def authenticate():
+def home():
     return "This is Bulb!"
 
 @app.route('/auth', methods=['GET'])
