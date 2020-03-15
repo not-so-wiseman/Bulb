@@ -23,7 +23,7 @@ class Lamp:
             :return: URL for authenticating a user 
         """
         _auth_url = self._app_context.create_url_for_authentication(
-            self.host + '/login', 
+            self._host + '/login', 
             self._target
         )
         return _auth_url
@@ -32,7 +32,7 @@ class Lamp:
     def _auth_user(self):
         user_session = self._app_context.create_user_context(
             result_uri = None, 
-            host = self.host, 
+            host = self._host, 
             encrypt_requests=True
         )
         return user_session
