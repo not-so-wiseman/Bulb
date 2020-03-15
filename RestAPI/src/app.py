@@ -8,6 +8,10 @@ from .LampAPI.lamp import Lamp
 app = Flask(__name__)
 api = Lamp()
 
+@app.route('/', methods=['GET'])
+def authenticate():
+    return "This is Bulb!"
+
 @app.route('/auth', methods=['GET'])
 def authenticate():
     redirect_url = api.get_auth_url()

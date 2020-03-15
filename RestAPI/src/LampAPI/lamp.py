@@ -6,7 +6,8 @@ from .config import Config
 class Lamp:
     def __init__(self):
         config = Config()
-        self.host = config.get_host()
+        self._target = config.get_target()
+        self._host = config.get_host()
         self._app_context = d2lauth.fashion_app_context(
             app_id = config.get_id(),
             app_key = config.get_key()
@@ -23,7 +24,7 @@ class Lamp:
         """
         _auth_url = self._app_context.create_url_for_authentication(
             self.host + '/login', 
-            config.target
+            self._target
         )
         return _auth_url
 
