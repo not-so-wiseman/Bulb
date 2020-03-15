@@ -14,10 +14,10 @@ def home():
 
 @app.route('/auth', methods=['GET'])
 def authenticate():
-    redirect_url = api.get_auth_url()
-    return redirect(redirect_url, code=302)
-
-@app.route('/login', methods=['GET'])
-def login():
     return json.dumps(api.get_auth_url())
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.args
+    return json.dumps(data)
    
