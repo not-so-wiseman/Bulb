@@ -18,6 +18,7 @@ def home():
 
 @app.route('/auth', methods=['GET'])
 def authenticate():
+    print('\n -------------- \n')
     auth = Authenticate()
     return json.dumps(auth.get_auth_url())
 
