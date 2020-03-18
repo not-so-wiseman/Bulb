@@ -4,6 +4,9 @@ from flask import Flask, Response, redirect, request
 
 
 from .LampAPI.lamp import Lamp
+from .LampAPI.authenticate import Authenticate
+from .LampAPI.utils.utilities import Utilities
+
 
 app = Flask(__name__)
 api = Lamp()
@@ -16,7 +19,7 @@ def home():
 def authenticate():
     return json.dumps(api.get_auth_url())
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST', 'PUT'])
 def login():
     data = request.args
     return json.dumps(data)

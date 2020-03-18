@@ -12,33 +12,17 @@ class Lamp:
             app_id = config.get_id(),
             app_key = config.get_key()
         )
-        
-    def get_auth_url(self):
-        """
-            **Builds a URL for user authentication**
-            Provides a url that the student can login to their D2L
-            account from. This url will redirect the student back to the 
-            Bulb's login endpoint.
-
-            :return: URL for authenticating a user 
-        """
-        _auth_url = self._app_context.create_url_for_authentication(
-            self._host + '/login', 
-            self._target
-        )
-        return _auth_url
-
     
-    def _auth_user(self):
+    def _auth_user(self, token):
         user_session = self._app_context.create_user_context(
-            result_uri = None, 
+            result_uri = token, 
             host = self._host, 
             encrypt_requests=True
         )
         return user_session
 
-    def _get(self, route):
-        user_session = self._auth_user()
+    def _get(self, token, route):
+        user_session = self._auth_user(token)
         url = user_session.create_authenticated_url(route)
         r = requests.get(url)
         return r
