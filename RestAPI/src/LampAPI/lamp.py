@@ -27,10 +27,12 @@ class Lamp:
         r = requests.get(url)
         return r
 
-    def enrolled_courses(self):
+    def enrolled_courses(self, token):
         route = '/d2l/api/lp/1.0/enrollments/myenrollments/'
-        pass
+        request = self._get(token, route)
+        return request.text
 
+    """
     def student_grades(self, course):
         #routes = [
         #    'https://online.mun.ca/d2l/api/le/1.0/332969/grades/'.format(course),
@@ -45,6 +47,6 @@ class Lamp:
     def course_announcements(self, course):
         route = '/d2l/api/le/1.0/{}/news/'.format(course)
         pass
-
+    """
 
 
