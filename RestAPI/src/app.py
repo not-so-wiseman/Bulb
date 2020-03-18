@@ -11,9 +11,10 @@ from .LampAPI.utils.utilities import Utilities
 app = Flask(__name__)
 api = Lamp()
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'PUT', 'POST'])
 def home():
-    return "This is Bulb!"
+    data = request.args
+    return json.dumps(data)
 
 @app.route('/auth', methods=['GET'])
 def authenticate():
