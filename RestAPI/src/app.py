@@ -13,11 +13,12 @@ api = Lamp()
 
 @app.route('/', methods=['GET', 'PUT', 'POST'])
 def home():
+    print('\n ------home-------- \n')
     return "test"
 
 @app.route('/auth', methods=['GET'])
 def authenticate():
-    print('\n -------------- \n')https://blub.tech/?x_a=VFuR-5Acoid1kFGPy6C5sy&x_b=_pP_aCfTrYdCb-YV2JBAbs&x_c=I0XxlaI6b511fMtEXD1S3jLkB0APT67IfaoDOOKYyyo
+    print('\n ------auth-------- \n')
     auth = Authenticate()
     return json.dumps(auth.get_auth_url())
 
