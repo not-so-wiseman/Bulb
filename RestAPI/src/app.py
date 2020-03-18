@@ -26,5 +26,7 @@ def authenticate():
 def courses():
     token = request.args["token"]
     courses = api.enrolled_courses(token)
-    return courses
+    utils = Utilities()
+    course_data = utils.show_courses(courses)
+    return course_data
    
