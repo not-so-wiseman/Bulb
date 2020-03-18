@@ -23,8 +23,8 @@ class Authenticate:
             :return: URL for authenticating a user 
         """
         _auth_url = self._app_context.create_url_for_authentication(
-            self._host, 
-            self._target
+            host=self._host, 
+            client_app_url=self._target
         )
         return _auth_url
 
