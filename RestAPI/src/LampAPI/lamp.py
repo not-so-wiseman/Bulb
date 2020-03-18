@@ -22,6 +22,7 @@ class Lamp:
         return user_session
 
     def _get(self, token, route):
+        token = token.strip('"')
         user_session = self._auth_user(token)
         url = user_session.create_authenticated_url(route)
         r = requests.get(url)

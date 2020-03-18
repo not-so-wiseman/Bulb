@@ -24,5 +24,7 @@ def authenticate():
 
 @app.route('/api/courses', methods=['GET'])
 def courses():
-    return request.args
+    token = request.args["token"]
+    courses = api.enrolled_courses(token)
+    return courses
    
