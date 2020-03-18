@@ -17,10 +17,16 @@ def home():
 
 @app.route('/auth', methods=['GET'])
 def authenticate():
-    return json.dumps(api.get_auth_url())
+    auth = Authenticate()
+    return json.dumps(auth.get_auth_url())
 
 @app.route('/login', methods=['POST', 'PUT'])
 def login():
+    auth = Authenticate()
     data = request.args
     return json.dumps(data)
+
+@app.route('/api/courses', methods=['GET'])
+def courses():
+    return "www.blub.tech/api/courses"
    
