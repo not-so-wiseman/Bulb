@@ -13,8 +13,12 @@ api = Lamp()
 
 @app.route('/', methods=['GET', 'PUT', 'POST'])
 def home():
-    print('\n ------home-------- \n')
-    return "test"
+    if request.method != 'GET':
+        auth = Authenticate()
+        data = request.args
+        return json.dumps(data)
+    else:
+        return "Welcome to Bulb!"
 
 @app.route('/auth', methods=['GET'])
 def authenticate():
