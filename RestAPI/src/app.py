@@ -21,7 +21,6 @@ def authenticate():
     auth = Authenticate()
     return json.dumps(auth.get_auth_url())
 
-
 @app.route('/api/courses', methods=['GET'])
 def courses():
     token = request.args["token"]
