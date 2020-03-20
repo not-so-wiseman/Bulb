@@ -2,7 +2,7 @@ import json
 
 class CourseContext:
     def _filter_json(self, json_data):
-        json_data = json_data["Items"]
+        json_data = json_data
         return json_data
 
     
