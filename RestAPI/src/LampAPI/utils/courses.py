@@ -9,14 +9,13 @@ class Course:
         )
         self.id = json_elem["OrgUnit"]["Id"]
         self.name = json_elem["OrgUnit"]["Name"]
-        data = {"Id":self.id, "Name":self.name, "StartDate":str(self.start_date)}
-        self.json = json.dumps(data, indent=4)
-    
+        self.data = {"Id":self.id, "Name":self.name, "StartDate":str(self.start_date)}
+        
     def __str__(self):
-        return self.json
+        return str(self.data)
 
     def __repr__(self):
-        return self.json
+        return "<D2L Course Offering>"
 
 
 class Courses:
