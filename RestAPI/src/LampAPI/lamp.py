@@ -45,7 +45,7 @@ class Lamp:
     def _return_course_info(self):
         route = D2L_LEARNING_PLATFORM + 'enrollments/myenrollments/'
         request = self._get(route)
-        return Courses(request.text)
+        return Courses(request.json)
 
     def courses(self):
         return self._return_course_info().data
