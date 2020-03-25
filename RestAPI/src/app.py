@@ -42,7 +42,7 @@ def courses(api):
     try:
         courses_json = []
         for course in api.courses():
-            courses_json.append(str(course))
-        return str(courses_json)
+            courses_json.append(course)
+        return json.dumps(courses_json)
     except Exception as e:
         return str("[{}] {}".format(500,e))
