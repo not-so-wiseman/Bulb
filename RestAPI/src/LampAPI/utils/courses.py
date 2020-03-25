@@ -40,7 +40,7 @@ class Courses:
         try:
             self.data = self._filter_enrollments(json_data)
         except Exception as e:
-            raise("Cannot process json, {}".format(e))
+            raise Exception("Cannot process json, {}".format(e))
     
     def org_units(self):
         ids = []
