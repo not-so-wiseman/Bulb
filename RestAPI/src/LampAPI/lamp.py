@@ -43,7 +43,7 @@ class Lamp:
     # Courses General
 
     def _return_course_info(self):
-        route = D2L_LEARNING_ENV + 'enrollments/myenrollments/'
+        route = D2L_LEARNING_PLATFORM + 'enrollments/myenrollments/'
         request = self._get(route)
         return Courses(request.text)
 
