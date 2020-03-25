@@ -24,7 +24,6 @@ class Lamp:
             app_key = config.get_key()
         )
 
-        self.test = str(self._token)
     
     def _auth_user(self):
         user_session = self._app_context.create_user_context(
@@ -44,7 +43,7 @@ class Lamp:
     # Courses General
 
     def _return_course_info(self):
-        route = D2L_LEARNING_ENV + '/enrollments/myenrollments/'
+        route = D2L_LEARNING_ENV + 'enrollments/myenrollments/'
         request = self._get(route)
         return Courses(request.text)
 
