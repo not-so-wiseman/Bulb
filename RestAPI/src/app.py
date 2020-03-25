@@ -22,6 +22,7 @@ def validate_api(endpoint_func):
     return wrapper
 
 
+# Authentification routes
 
 @app.route('/', methods=['GET', 'PUT', 'POST'])
 def home():
@@ -32,6 +33,8 @@ def authenticate():
     auth = Authenticate()
     return json.dumps(auth.get_auth_url())
 
+
+# Course information routes
 
 @app.route('/api/courses', methods=['GET'])
 @validate_api
