@@ -23,6 +23,7 @@ class Courses:
     def _filter_enrollments(self, json_data):
         active_courses = []
         json_data = json_data["Items"]
+        print(json_data)
         for course in json_data:
             details = course["Access"]
             end_date = details["EndDate"]
