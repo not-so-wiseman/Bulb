@@ -37,7 +37,7 @@ class Lamp:
         user_session = self._auth_user()
         url = user_session.create_authenticated_url(route)
         r = requests.get(url)
-        #assert r.status_code == 200
+        assert r.status_code == 200
         return r
 
     # Courses General
@@ -45,8 +45,6 @@ class Lamp:
     def _return_course_info(self):
         route = D2L_LEARNING_ENV + 'enrollments/myenrollments/'
         request = self._get(route)
-        print('\n-------------------\n', route, request.status_code)
-
         return Courses(request.text)
 
     def courses(self):
