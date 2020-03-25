@@ -39,4 +39,7 @@ def authenticate():
 @app.route('/api/courses', methods=['GET'])
 @validate_api
 def courses(api):
-    return str(api.courses())
+    try:
+        return str(api.courses())
+    except Exception as e:
+        return e, 404

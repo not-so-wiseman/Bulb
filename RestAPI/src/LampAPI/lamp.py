@@ -34,7 +34,6 @@ class Lamp:
         return user_session
 
     def _get(self, route):
-        print("-------------------------------\n",self._token)
         user_session = self._auth_user()
         url = user_session.create_authenticated_url(route)
         r = requests.get(url)
