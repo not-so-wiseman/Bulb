@@ -45,6 +45,8 @@ class Lamp:
     def _return_course_info(self):
         route = D2L_LEARNING_ENV + 'enrollments/myenrollments/'
         request = self._get(route)
+        print('\n-------------------\n', route, request.status_code)
+
         return Courses(request.text)
 
     def courses(self):
