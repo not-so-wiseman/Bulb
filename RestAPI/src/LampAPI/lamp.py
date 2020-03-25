@@ -2,7 +2,7 @@ import d2lvalence.auth as d2lauth
 import requests, os
 
 from .config import Config
-from utils.courses import Courses, Course
+from .utils.courses import Courses, Course
 
 D2L_LEARNING_ENV = "/d2l/api/le/1.0/"
 D2L_LEARNING_PLATFORM = "/d2l/api/lp/1.0/"
