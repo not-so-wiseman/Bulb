@@ -16,7 +16,7 @@ class Course:
         return self.json
 
     def __repr__(self):
-        return "<D2L Course Offering>"
+        return self.json
 
 
 class Courses:
