@@ -40,6 +40,9 @@ def authenticate():
 @validate_api
 def courses(api):
     try:
-        return str(api.courses())
+        courses_json = []
+        for course in api.courses():
+            courses_json.append(str(course))
+        return str(courses_json)
     except Exception as e:
         return str("[{}] {}".format(500,e))
