@@ -42,4 +42,4 @@ def courses(api):
     try:
         return str(api.courses())
     except Exception as e:
-        return str("[{}] {}".format(404,e))
+        return str("[{}] {}".format(500,e))
