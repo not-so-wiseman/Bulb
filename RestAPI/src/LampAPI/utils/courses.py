@@ -21,8 +21,6 @@ class Course:
 
 class Courses:
     def _filter_enrollments(self, json_data):
-        return json_data
-        '''
         active_courses = []
         print(json_data)
         for course in json_data:
@@ -34,9 +32,8 @@ class Courses:
                 delta = end_date - datetime.now()
                 
                 if(delta.total_seconds() > 0):
-                    active_courses.append(Course(course))
-        '''
-        #return active_courses
+                    active_courses.append("test") #Course(course)
+        return active_courses
 
     
     def __init__(self, json_data):
