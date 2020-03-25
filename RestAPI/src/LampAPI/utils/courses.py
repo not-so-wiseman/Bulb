@@ -22,6 +22,7 @@ class Course:
 class Courses:
     def _filter_enrollments(self, json_data):
         active_courses = []
+        print(json_data)
         for course in json_data:
             details = course["Access"]
             end_date = details["EndDate"]
@@ -40,7 +41,7 @@ class Courses:
             self.data = self._filter_enrollments(json_data)
         except Exception as e:
             self.data = []
-        print("Cannot process json, {}".format(e))
+            print("Cannot process json, {}".format(e))
     
     def org_units(self):
         ids = []

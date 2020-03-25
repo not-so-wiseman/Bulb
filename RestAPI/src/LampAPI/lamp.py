@@ -23,6 +23,8 @@ class Lamp:
             app_id = config.get_id(),
             app_key = config.get_key()
         )
+
+        self.test = str(self._token)
     
     def _auth_user(self):
         user_session = self._app_context.create_user_context(
@@ -36,7 +38,7 @@ class Lamp:
         user_session = self._auth_user()
         url = user_session.create_authenticated_url(route)
         r = requests.get(url)
-        assert r.status_code == 200
+        #assert r.status_code == 200
         return r
 
     # Courses General
@@ -53,8 +55,8 @@ class Lamp:
         courses = self._return_course_info()
         return courses.course(course_id)
 
-    def orgUnits(self):
-        return self._return_course_info().orgUnits
+    def org_units(self):
+        return self._return_course_info().org_units()
 
     # Grades
 
