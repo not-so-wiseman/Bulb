@@ -42,7 +42,7 @@ class Lamp:
         user_session = self._auth_user()
         url = user_session.create_authenticated_url(route)
         r = requests.get(url)
-        assert r.status_code == 200
+        #assert r.status_code == 200
         return r
 
     # Courses General
