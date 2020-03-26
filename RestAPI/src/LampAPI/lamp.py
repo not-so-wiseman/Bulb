@@ -70,7 +70,7 @@ class Lamp:
     def _return_grade_info(self, course_org_unit):
         #https://online.mun.ca/d2l/api/le/1.0/332969/grades/values/myGradeValues/
         route = "{}/{}/grades/values/myGradeValues/".format(
-            D2L_LEARNING_PLATFORM,
+            D2L_LEARNING_ENV,
             course_org_unit
         )
         request = self._get(route)
@@ -99,10 +99,9 @@ class Lamp:
         
         for course in courses.data:
             grade_info = self._return_grade_info(course.id)
-            #course.json["Grades"] = grade_info.categorized_items
-            #course.json["Average"] = grade_info.average()
-            #grades_json.append(deepcopy(course.json))
-            grades_json.append("broken")
+            course.json["Grades"] = grade_info.categorized_items
+            course.json["Average"] = grade_info.average()
+            grades_json.append(deepcopy(course.json))
         
         return json.dumps(grades_json)
             
