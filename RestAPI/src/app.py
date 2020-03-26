@@ -50,8 +50,10 @@ def courses(api):
 @app.route('/api/grades-all', methods=['GET'])
 @validate_api
 def grades_all(api):
-    return api.grades_all()
-   
+    try:
+        return api.grades_all()
+    except Exception as e:
+        return str("[{}] {}".format(500,e))
 
 
 @app.route('/api/grades/<org_unit>/goal', methods=['GET'])
