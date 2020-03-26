@@ -55,7 +55,7 @@ class CourseGrades:
         return num, denom
 
     def __init__(self, json_data):
-        data = json.loads(json_data)
+        data = json.loads(str(json_data))
         self.items = self._filter_grade_items(data)
         self.categorized_items = self._categorize(self.items)
         self._numerator, self._demominator = self._total_fraction() 
