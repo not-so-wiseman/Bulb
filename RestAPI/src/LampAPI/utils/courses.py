@@ -24,22 +24,19 @@ class Courses:
         json_data = json_data["Items"]
     
         for course in json_data:
-            type_ = course["OrgUnit"]["Type"]["Code"] # To DO remove
+            type_ = course["OrgUnit"]["Type"]["Code"]
             id_ = course["OrgUnit"]["Id"]
             details = course["Access"]
             end_date = details["EndDate"]
 
-           
-            if(details["CanAccess"] == True and details["EndDate"] != None
-            and type_ == "Course Offering" and id_ != 336252):
+            if(details["CanAccess"] == True and details["EndDate"] != None and
+            id_ != 336252 and type_ == "Course Offering"):
                 end_date = datetime.strptime(end_date, '%Y-%m-%dT%H:%M:%S.%fZ')
                 #delta = end_date - datetime.now()
-                delta = end_date - datetime(2020, 1, 1)
-
+                delta = end_date - datetime(2019, 12, 25)
+                
                 if(delta.total_seconds() > 0):
                     active_courses.append(Course(course))
-          
-            
         return active_courses
 
     
