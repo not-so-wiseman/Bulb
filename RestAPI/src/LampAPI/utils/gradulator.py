@@ -68,7 +68,7 @@ class CourseGrades:
         return to_achieve
 
     def achieve(self, goal):
-        assert (type(goal) == int)
+        goal = int(goal)
         percent = self._achievable_percentage(goal)
         json_response = {"gradeToAchieve": int(percent), "Achievable": None}
         if (percent < 100):
