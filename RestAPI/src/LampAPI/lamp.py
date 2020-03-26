@@ -98,13 +98,11 @@ class Lamp:
         courses = self._return_course_info()
         
         for course in courses.data:
-            try:
-                grade_info = self._return_grade_info(course.id)
-                course.json["Grades"] = grade_info.categorized_items
-                course.json["Average"] = grade_info.average()
-                grades_json.append(deepcopy(course.json))
-            except:
-                grades_json.append("broken")
+            grade_info = self._return_grade_info(course.id)
+            #course.json["Grades"] = grade_info.categorized_items
+            #course.json["Average"] = grade_info.average()
+            #grades_json.append(deepcopy(course.json))
+            grades_json.append("broken")
         
         return json.dumps(grades_json)
             
