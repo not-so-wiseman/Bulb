@@ -63,16 +63,24 @@ class CourseGrades:
         return (self._numerator/self._demominator)*100
 
     def _achievable_percentage(self, goal):
-        remaining_percentage = (100 - self._demominator)/100
-        to_achieve = (goal - self._numerator)/remaining_percentage
+        if self._demominator == 100:
+            to_achieve = None
+        else: 
+            remaining_percentage = (100 - self._demominator)/100
+            to_achieve = (goal - self._numerator)/remaining_percentage
         return to_achieve
 
     def achieve(self, goal):
         goal = int(goal)
         percent = self._achievable_percentage(goal)
+        percent = int(percent) if percent != None else None
+
         json_response = {"gradeToAchieve": int(percent), "Achievable": None}
-        if (percent < 100):
-            json_response["Achievable"] = "Yes"
+        if percent != None:
+            if (percent < 100):
+                json_response["Achievable"] = "Yes"
+            else:
+                json_response["Achievable"] = "No"
         else:
             json_response["Achievable"] = "No"
         return json_response
