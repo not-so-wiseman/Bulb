@@ -24,13 +24,14 @@ class Courses:
         json_data = json_data["Items"]
     
         for course in json_data:
+            type_ = course["OrgUnit"]["Type"]["Code"] # To DO remove
+            id_ = course["OrgUnit"]["Id"]
             details = course["Access"]
             end_date = details["EndDate"]
 
            
             if(details["CanAccess"] == True and details["EndDate"] != None
-            and details["Type"]["Code"] == "Course Offering" and 
-            details["Type"]["Id"] != 336252):
+            and type_ == "Course Offering" and id_ != 336252):
                 end_date = datetime.strptime(end_date, '%Y-%m-%dT%H:%M:%S.%fZ')
                 #delta = end_date - datetime.now()
                 delta = end_date - datetime(2020, 1)
