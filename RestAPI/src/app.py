@@ -51,7 +51,7 @@ def courses(api):
 @validate_api
 def grades_all(api):
     try:
-        return "test"
+        return api.grades_all()
     except Exception as e:
         return str("[{}] {}".format(500,e))
 
