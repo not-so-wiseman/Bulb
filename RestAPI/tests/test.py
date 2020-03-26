@@ -4,7 +4,7 @@ from selenium.webdriver.common.keys import Keys
 
 from user import User
 
-TEST_STUDENT = User(username="ewiseman", password="")
+TEST_STUDENT = User(username="ewiseman@mun.ca", password="EWCJ_Student1")
 
 # Get login URL from Bulb RESTful API
 d2l_login = requests.get('https://www.blub.tech/auth').text.strip('"')

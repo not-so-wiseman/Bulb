@@ -31,8 +31,8 @@ class Courses:
                 end_date = datetime.strptime(end_date, '%Y-%m-%dT%H:%M:%S.%fZ')
                 delta = end_date - datetime.now()
                 
-                if(delta.total_seconds() > 0):
-                    active_courses.append(Course(course))
+                #if(delta.total_seconds() > 0):
+                active_courses.append(Course(course))
         return active_courses
 
     
