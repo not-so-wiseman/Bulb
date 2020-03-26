@@ -94,17 +94,17 @@ class Lamp:
         return self._return_grade_info(course_no).categorized_items
 
     def grades_all(self):
-        """
+        
         grades_json = []
         courses = self._return_course_info()
-        
+        """
         for course in courses.data:
             grade_info = self._return_grade_info(course.id)
             course.json["Grades"] = grade_info.categorized_items
             course.json["Average"] = grade_info.average()
             grades_json.append(deepcopy(course.json))
         """
-        return json.dumps("test")
+        return json.dumps(courses.data)
             
    
 
