@@ -51,7 +51,7 @@ def courses(api):
 @validate_api
 def grades_all(api):
     try:
-        return json.dumps(api.average(311686))
+        return "test"
     except Exception as e:
         return str("[{}] {}".format(500,e))
 
