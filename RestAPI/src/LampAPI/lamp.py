@@ -69,7 +69,7 @@ class Lamp:
 
     def _return_grade_info(self, course_org_unit):
         #https://online.mun.ca/d2l/api/le/1.0/332969/grades/values/myGradeValues/
-        route = "{}/{}/grades/values/myGradeValues/".format(
+        route = "{}{}/grades/values/myGradeValues/".format(
             D2L_LEARNING_ENV,
             course_org_unit
         )
