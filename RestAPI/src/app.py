@@ -57,8 +57,5 @@ def grades_all(api):
 @app.route('/api/grades/<org_unit>/goal', methods=['GET'])
 @validate_api
 def course_goal(api, org_unit):
-    try:
-        goal = request.args.get("goal")
-        return json.dumps(api.achieve_goal(course_no=org_unit, goal=goal))
-    except Exception as e:
-        return str("[{}] {}".format(500,e))
+    goal = request.args.get("goal")
+    return api.achieve_goal(course_no=org_unit, goal=goal)
