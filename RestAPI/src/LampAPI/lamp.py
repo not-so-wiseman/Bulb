@@ -55,7 +55,7 @@ class Lamp:
     def courses(self):
         courses_json = []
         for course in self._return_course_info().data:
-            courses_json.append(course.data)
+            courses_json.append(course.json)
         return json.dumps(courses_json)
 
     def course(self, course_id):
