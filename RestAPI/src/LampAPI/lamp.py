@@ -1,8 +1,13 @@
 import d2lvalence.auth as d2lauth
-import requests, os
+import requests
+import os
+import json
+
+from copy import deepcopy
 
 from .config import Config
 from .utils.courses import Courses, Course
+from .utils.gradulator import CourseGrades
 
 D2L_LEARNING_ENV = "/d2l/api/le/1.0/"
 D2L_LEARNING_PLATFORM = "/d2l/api/lp/1.0/"
@@ -48,7 +53,10 @@ class Lamp:
         return Courses(request.json())
 
     def courses(self):
-        return self._return_course_info().data
+        courses_json = []
+        for course in self._return_course_info().data:
+            courses_json.append(course.data)
+        return json.dumps(courses_json)
 
     def course(self, course_id):
         courses = self._return_course_info()
@@ -59,16 +67,50 @@ class Lamp:
 
     # Grades
 
-    
+    def _return_grade_info(self, course_org_unit):
+        #https://online.mun.ca/d2l/api/le/1.0/332969/grades/values/myGradeValues/
+        route = "{}/{}/grades/values/myGradeValues/".format(
+            D2L_LEARNING_PLATFORM,
+            course_org_unit
+        )
+        request = self._get(route)
+        return CourseGrades(request.json())
+
+    def overall_average(self):
+        course_ids = self._return_course_info().org_units()
+        course_grades = []
+        for course_no in course_ids:
+            average = self._return_grade_info(course_no).average()
+            course_grades.append(average)
+        return sum(course_no)
+        
+    def average(self, course_no):
+        return self._return_grade_info(course_no).average()
+
+    def achieve_goal(self, course_no, goal):
+        return self._return_grade_info(course_no).achieve(goal)
+
+    def grades_course(self, course_no):
+        return self._return_grade_info(course_no).categorized_items
+
+    def grades_all(self):
+        grades_json = []
+        courses = self._return_course_info()
+        
+        for course in courses.data:
+            grade_info = self._return_grade_info(course.id)
+            course.json["Grades"] = grade_info.categorized_items
+            course.json["Average"] = grade_info.average()
+            grades_json.append(deepcopy(course.json))
+
+        return json.dumps(courses)
+            
+   
+
+
+
 
     """
-    def student_grades(self, course):
-        #routes = [
-        #    'https://online.mun.ca/d2l/api/le/1.0/332969/grades/'.format(course),
-        #    'https://online.mun.ca/d2l/api/le/1.0/332969/grades/447653/values/myGradeValue'
-        #]
-        pass
-
     def student_syllabus(self, course):
         route = '/d2l/api/le/1.0/{}/content/root/'.format(course)
         pass

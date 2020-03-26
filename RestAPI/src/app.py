@@ -19,6 +19,8 @@ def validate_api(endpoint_func):
 
         api = Lamp(token)
         return endpoint_func(api, *args, **kwargs)
+    #https://stackoverflow.com/questions/17256602/assertionerror-view-function-mapping-is-overwriting-an-existing-endpoint-functi
+    wrapper.__name__ = endpoint_func.__name__
     return wrapper
 
 
@@ -40,10 +42,25 @@ def authenticate():
 @validate_api
 def courses(api):
     try:
-        courses_json = []
-        for course in api.courses():
-            courses_json.append(course.data)
-        return json.dumps(courses_json)
+        return api.courses()
+    except Exception as e:
+        return str("[{}] {}".format(500,e))
 
+
+@app.route('/api/grades-all', methods=['GET'])
+@validate_api
+def grades_all(api):
+    try:
+        return json.dumps(api.grades_all())
+    except Exception as e:
+        return str("[{}] {}".format(500,e))
+
+
+@app.route('/api/grades/<org_unit>/goal', methods=['GET'])
+@validate_api
+def course_goal(api, org_unit):
+    try:
+        goal = request.args.get("goal")
+        return json.dumps(api.achieve_goal(course_no=org_unit, goal=goal))
     except Exception as e:
         return str("[{}] {}".format(500,e))

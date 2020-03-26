@@ -77,11 +77,13 @@ class CourseGrades:
         else:
             json_response["Achievable"] = "No"
         return json_response
-            
-            
-        
-        
-        
 
+
+test_file = open("C:\DEV\Bulb\RestAPI\\tests\\response_grades.json", "r")
+json_data = json.loads(test_file.readlines()[0])
+json_data = json.dumps(json_data)
+
+cg = CourseGrades(json_data)
+print(cg.categorized_items)
 
 

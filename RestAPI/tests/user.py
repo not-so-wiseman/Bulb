@@ -23,3 +23,5 @@ class User:
         self.tokens["id"] = parameters[0].split('=')[1]
         self.tokens["key"] = parameters[1].split('=')[1]
         self.tokens["signature"] = parameters[2].split('=')[1]
+
+    

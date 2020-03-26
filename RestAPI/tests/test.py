@@ -4,7 +4,7 @@ from selenium.webdriver.common.keys import Keys
 
 from user import User
 
-TEST_STUDENT = User("", "")
+TEST_STUDENT = User(username="ewiseman", password="")
 
 # Get login URL from Bulb RESTful API
 d2l_login = requests.get('https://www.blub.tech/auth').text.strip('"')
@@ -30,4 +30,4 @@ submit_btn.click()
 # Get credentials from URL
 redirected_url = driver.current_url
 TEST_STUDENT.set_token(redirected_url)
-
+print(TEST_STUDENT.redirect_url)

@@ -9,10 +9,10 @@ class Course:
         )
         self.id = json_elem["OrgUnit"]["Id"]
         self.name = json_elem["OrgUnit"]["Name"]
-        self.json = {"Id":self.id, "Name":self.name, "StartDate":str(self.start_date)}
+        self.data = {"Id":self.id, "Name":self.name, "StartDate":str(self.start_date)}
         
     def __str__(self):
-        return str(self.json)
+        return str(self.data)
 
     def __repr__(self):
         return "<D2L Course Offering>"
@@ -52,15 +52,17 @@ class Courses:
         assert (type(course_id) == str),\
             "Invalid course id of type {}".format(type(course_id))
         
-        course_lookup = None
         match = False
         for course in self.data:
             if(course.id == course_id):
-                course_lookup = course
                 match = True
         assert (match == True), "Course id, {} not found.".format(course_id)
 
-        return course_lookup
 
-        
-    
+test_file = open("response.json", "r")
+json_data = json.loads(test_file.readlines()[0])
+
+
+courses = Courses(json_data)
+print(courses.org_units())
+
