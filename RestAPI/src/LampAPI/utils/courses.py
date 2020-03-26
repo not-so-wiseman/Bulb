@@ -27,15 +27,18 @@ class Courses:
             details = course["Access"]
             end_date = details["EndDate"]
 
-            """
-            if(details["CanAccess"] == True and details["EndDate"] != None):
+           
+            if(details["CanAccess"] == True and details["EndDate"] != None
+            and details["Type"]["Code"] == "Course Offering" and 
+            details["Type"]["Id"] != 336252):
                 end_date = datetime.strptime(end_date, '%Y-%m-%dT%H:%M:%S.%fZ')
-                delta = end_date - datetime.now()
-                
+                #delta = end_date - datetime.now()
+                delta = end_date - datetime(2020, 1)
+
                 if(delta.total_seconds() > 0):
                     active_courses.append(Course(course))
-            """
-            active_courses.append(Course(course))
+          
+            
         return active_courses
 
     
