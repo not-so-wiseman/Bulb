@@ -3,6 +3,8 @@ import requests
 import os
 import json
 
+import PyPDF2
+
 from copy import deepcopy
 
 from .config import Config
@@ -125,7 +127,10 @@ class Lamp:
             3065118
         )
         request = self._get(route)
-        return str(request.text)
+        pdfReader = PyPDF2.PdfFileReader(request.text)
+        pageObj = pdfReader.getPage(0)
+
+        return str(pageObj.extractText())
 
 
 
