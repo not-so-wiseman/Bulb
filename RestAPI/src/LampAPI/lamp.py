@@ -2,14 +2,13 @@ import d2lvalence.auth as d2lauth
 import requests
 import os
 import json
-import io
-import PyPDF2
 
 from copy import deepcopy
 
 from .config import Config
 from .utils.courses import Courses, Course
 from .utils.gradulator import CourseGrades
+from .utils.calendar import Calendar
 
 D2L_LEARNING_ENV = "/d2l/api/le/1.42/"
 D2L_LEARNING_PLATFORM = "/d2l/api/lp/1.26/"
@@ -127,12 +126,7 @@ class Lamp:
             3065118
         )
         request = self._get(route)
-        pdf = request.content #io.BytesIO(request.content)
-        pdfReader = PyPDF2.PdfFileReader(pdf)
-        pageObj = pdfReader.getPage(0)
-
-        return str(pageObj.extractText())
-        #return request.text
+        return Calendar(request.content).pdf
 
 
 

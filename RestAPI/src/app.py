@@ -53,7 +53,6 @@ def grades_all(api):
     return api.grades_all()
     
 
-
 @app.route('/api/grades/<org_unit>/goal', methods=['GET'])
 @validate_api
 def course_goal(api, org_unit):
