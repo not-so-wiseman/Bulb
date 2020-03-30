@@ -7,6 +7,7 @@ Click==7.0
 colorama==0.4.3
 d2lvalence==1.2.2
 docutils==0.16
+feedparser==5.2.1
 Flask==1.1.1
 future==0.18.2
 gunicorn==20.0.4
@@ -23,8 +24,10 @@ packaging==20.1
 Pygments==2.5.2
 pylint==2.4.4
 pyparsing==2.4.6
+PyPDF2==1.26.0
 pytz==2019.3
 requests==2.22.0
+selenium==3.141.0
 six==1.14.0
 snowballstemmer==2.0.0
 Sphinx==2.4.3
