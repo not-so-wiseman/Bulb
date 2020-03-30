@@ -2,7 +2,7 @@ import d2lvalence.auth as d2lauth
 import requests
 import os
 import json
-
+import io
 import PyPDF2
 
 from copy import deepcopy
