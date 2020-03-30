@@ -125,7 +125,7 @@ class Lamp:
             3065118
         )
         request = self._get(route)
-        return request.json()
+        return str(request)
 
 
 
