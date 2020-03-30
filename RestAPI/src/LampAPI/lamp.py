@@ -119,7 +119,7 @@ class Lamp:
         return request.json()
 
     def calendar(self, course_org_unit):
-        route = "{}{}/content/topics/{}/file?stream=true".format(
+        route = "{}{}/content/topics/{}/file".format(
             D2L_LEARNING_ENV,
             course_org_unit,
             3065118
