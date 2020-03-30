@@ -127,7 +127,7 @@ class Lamp:
             3065118
         )
         request = self._get(route)
-        pdf = io.BytesIO(request.content)
+        pdf = request.content #io.BytesIO(request.content)
         pdfReader = PyPDF2.PdfFileReader(pdf)
         pageObj = pdfReader.getPage(0)
 
