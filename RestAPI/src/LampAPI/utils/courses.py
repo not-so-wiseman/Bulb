@@ -30,7 +30,7 @@ class Courses:
             end_date = details["EndDate"]
 
             if(details["CanAccess"] == True and details["EndDate"] != None and
-            id_ != 336252 and id_ != 336459 and type_ == "Course Offering"):
+            id_ != 336252 and type_ == "Course Offering"):
                 end_date = datetime.strptime(end_date, '%Y-%m-%dT%H:%M:%S.%fZ')
                 delta = end_date - datetime.now()
                 

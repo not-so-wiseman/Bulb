@@ -41,11 +41,10 @@ def authenticate():
 @app.route('/api/courses', methods=['GET'])
 @validate_api
 def courses(api):
-    return api.courses()
-    '''try:
+    try:
         return api.courses()
     except Exception as e:
-        return str("[{}] {}".format(500,e))'''
+        return str("[{}] {}".format(500,e))
 
 
 @app.route('/api/grades-all', methods=['GET'])
