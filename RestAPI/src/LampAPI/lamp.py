@@ -127,10 +127,11 @@ class Lamp:
             3065118
         )
         request = self._get(route)
-        pdfReader = PyPDF2.PdfFileReader(request.text)
-        pageObj = pdfReader.getPage(0)
+        #pdfReader = PyPDF2.PdfFileReader(request.text)
+        #pageObj = pdfReader.getPage(0)
 
-        return str(pageObj.extractText())
+        #return str(pageObj.extractText())
+        return request.text
 
 
 
