@@ -9,8 +9,8 @@ from .config import Config
 from .utils.courses import Courses, Course
 from .utils.gradulator import CourseGrades
 
-D2L_LEARNING_ENV = "/d2l/api/le/1.0/"
-D2L_LEARNING_PLATFORM = "/d2l/api/lp/1.0/"
+D2L_LEARNING_ENV = "/d2l/api/le/1.42/"
+D2L_LEARNING_PLATFORM = "/d2l/api/lp/1.26/"
 
 class Lamp:
     """
@@ -106,18 +106,23 @@ class Lamp:
         return json.dumps(grades_json)
             
    
+    # Calendar
+    #https://online.mun.ca/d2l/le/content/335419/topics/files/download/3138479/DirectFileTopicDownload
+    def _return_syllabus(self, course_org_unit):
+        #https://online.mun.ca/d2l/api/le/1.0/332969/content/toc
+        #https://online.mun.ca/d2l/api/le/1.42/335419/content/topics/3138479/file?stream=true
+        route = "{}{}/content/toc".format(
+            D2L_LEARNING_ENV,
+            course_org_unit
+        )
+        request = self._get(route)
+        return request.json()
+
+    def calendar(self, course_org_unit):
+        return self._return_syllabus(course_org_unit)
 
 
 
 
-    """
-    def student_syllabus(self, course):
-        route = '/d2l/api/le/1.0/{}/content/root/'.format(course)
-        pass
-
-    def course_announcements(self, course):
-        route = '/d2l/api/le/1.0/{}/news/'.format(course)
-        pass
-    """
 
 
