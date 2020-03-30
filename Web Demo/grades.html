@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:900|Roboto:400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Web Demo/style.css">
+    <title>Bulb</title>
+  </head>
+  <body>
+      <!-- Image and text -->
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+        <img src="/Web Demo/Light-Bulb.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+        <span class="title">Blub</span>
+        </a>
+  </nav>
+  <div class="container">
+    <h2 class="pt-3">My Grades</h2>
+    <div class="card mt-4">
+        <div class="name card-header">
+          Name
+        </div>
+        <div class="card-body">
+            <h5 class="name card-title">Name</h5>
+            <p>Your average in the course is <span class="avge">0.</span>
+            To get a final grade of <span class="avge">0</span> you need to achieve
+            a <span class="avge">0</span> in the remainder of the course.</p>
+            <canvas id="myChart" width="400" height="400"></canvas>
+          <a href="#" class="btn btn-primary">Refresh</a>
+        </div>
+    </div>
+  </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script>
+        $( document ).ready( function() {
+            fetch('/Web Demo/response_grades.json')
+            .then(response => response.json())
+            .then(
+                data => ( 
+                    console.log(data),
+                    $( ".name" ).text(data[0]["Name"]),
+                    $( ".avge" ).text(data[0]["Average"]),
+                    ctx = document.getElementById('myChart').getContext('2d'),
+                    myPieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ["Assignments", "Midterm", "Final"],
+                        datasets: [{
+                            data: [
+                            23, 40, 52 
+                            ],
+                        }]
+                    },
+                    })
+                )
+            );
+        });
+    </script>  
+</body>
+</html>
