@@ -108,8 +108,7 @@ class Lamp:
             
    
     # Calendar
-    #https://online.mun.ca/d2l/le/content/335419/topics/files/download/3138479/DirectFileTopicDownload
-    def _return_syllabus(self, course_org_unit):
+    def _return_topics(self, course_org_unit):
         #https://online.mun.ca/d2l/api/le/1.0/332969/content/toc
         #https://online.mun.ca/d2l/api/le/1.42/335419/content/topics/3138479/file?stream=true
         route = "{}{}/content/toc".format(
