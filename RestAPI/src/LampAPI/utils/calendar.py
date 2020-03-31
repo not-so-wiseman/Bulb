@@ -1,3 +1,4 @@
+import tika
 from tika import parser
 
 class Calendar:

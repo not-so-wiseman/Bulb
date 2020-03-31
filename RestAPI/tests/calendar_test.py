@@ -1,8 +1,5 @@
-import PyPDF2
+import tika
 from tika import parser
+pdf = parser.from_file('outline_v1_0.pdf')
 
-
-#pdf = io.BytesIO(request.content)
-pdf = parser.from_file("outline_v1_0.pdf")
-#pdf = str(pdf).encode('utf-8', errors='ignore')
-print(pdf['content'])
+print(pdf["content"])
