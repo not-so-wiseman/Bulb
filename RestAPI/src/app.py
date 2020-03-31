@@ -63,5 +63,5 @@ def course_goal(api, org_unit):
 @app.route('/api/calendar', methods=['GET'])
 @validate_api
 def get_topics(api):
-    return api.calendar(336459)
+    return api.calendar(336459).pdf
 
