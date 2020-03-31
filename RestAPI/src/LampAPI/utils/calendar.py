@@ -1,18 +1,15 @@
-import tika
-from tika import parser
+import PyPDF3 as parser
+import io
 
 class Calendar:
-    attempt_no = 0
-
     def __init__(self, pdf_stream):
-        try:
-            self.pdf = str(parser.from_buffer(pdf_stream)['content'])
-        except RuntimeError:
-            self.attempt_no += 1
-            if self.attempt_no != 10:
-                print("Attempt: {}\n".format(self.attempt_no))
-                self.__init__(pdf_stream)
-            else:
-                print("Failed to connect to Tika server")
+        self.pdf = ""
+        pdf_data = io.BytesIO(pdf_stream)
+        pdf_reader = parser.PdfFileReader(pdf_data)
+        
+        for page_no in range(pdf_reader.numPages-1):
+            self.pdf += pdf_reader.getPage(page_no).extractText()
+        
+        
 
     

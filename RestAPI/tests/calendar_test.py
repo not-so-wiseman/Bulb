@@ -1,5 +1,8 @@
-import tika
-from tika import parser
-pdf = parser.from_file('outline_v1_0.pdf')
+import PyPDF3
 
-print(pdf["content"])
+pdf = open('outline_prob.pdf', 'rb')
+pdf_reader = PyPDF3.PdfFileReader(pdf)
+
+page2 = pdf_reader.getPage(2).extractText()
+print(page2.replace("\n"," "))
+

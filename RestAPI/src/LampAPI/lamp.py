@@ -126,7 +126,7 @@ class Lamp:
             3065118
         )
         request = self._get(route)
-        return Calendar(request.content).pdf
+        return Calendar(request.content)
 
 
 
