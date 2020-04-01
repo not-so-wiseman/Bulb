@@ -1,6 +1,6 @@
 import requests
 import json
-from flask import Flask, Response, redirect, request
+from flask import Flask, Response, redirect, request, render_template
 
 
 from .LampAPI.lamp import Lamp
@@ -28,7 +28,7 @@ def validate_api(endpoint_func):
 
 @app.route('/', methods=['GET', 'PUT', 'POST'])
 def home():
-    return "Welcome to Bulb!"
+    return render_template('home.html')
 
 @app.route('/auth', methods=['GET'])
 def authenticate():
