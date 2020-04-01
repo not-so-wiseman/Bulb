@@ -53,9 +53,15 @@ def grades_all(api):
     return api.grades_all()
     
 
-
 @app.route('/api/grades/<org_unit>/goal', methods=['GET'])
 @validate_api
 def course_goal(api, org_unit):
     goal = request.args.get("goal")
     return api.achieve_goal(course_no=org_unit, goal=goal)
+
+
+@app.route('/api/calendar', methods=['GET'])
+@validate_api
+def get_topics(api):
+    return api.calendar(336459).pdf
+
