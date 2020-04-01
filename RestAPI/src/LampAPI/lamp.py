@@ -8,7 +8,7 @@ from copy import deepcopy
 from .config import Config
 from .utils.courses import Courses, Course
 from .utils.gradulator import CourseGrades
-from .utils.calendar import Calendar
+from .utils.calendar import DataScrubber, PDF
 
 D2L_LEARNING_ENV = "/d2l/api/le/1.42/"
 D2L_LEARNING_PLATFORM = "/d2l/api/lp/1.26/"
@@ -106,7 +106,7 @@ class Lamp:
         
         return json.dumps(grades_json)
             
-   
+   """
     # Calendar
     def _return_topics(self, course_org_unit):
         #https://online.mun.ca/d2l/api/le/1.0/332969/content/toc
@@ -126,7 +126,7 @@ class Lamp:
         )
         request = self._get(route)
         return Calendar(request.content)
-
+    """
 
 
 
