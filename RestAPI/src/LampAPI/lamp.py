@@ -106,7 +106,7 @@ class Lamp:
         
         return json.dumps(grades_json)
             
-   """
+"""
     # Calendar
     def _return_topics(self, course_org_unit):
         #https://online.mun.ca/d2l/api/le/1.0/332969/content/toc
@@ -126,7 +126,7 @@ class Lamp:
         )
         request = self._get(route)
         return Calendar(request.content)
-    """
+"""
 
 
 
