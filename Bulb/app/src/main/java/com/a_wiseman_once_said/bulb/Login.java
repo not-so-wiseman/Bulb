@@ -2,6 +2,9 @@ package com.a_wiseman_once_said.bulb;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -61,8 +64,20 @@ public class Login extends AppCompatActivity {
             webView = (WebView) findViewById(R.id.d2lLogin);
 
             webView.getSettings().setJavaScriptEnabled(true);
-            webView.setWebViewClient(new WebViewClient());
-            webView.loadUrl("https://www.blub.tech");
+            webView.setWebViewClient(new WebViewClient(){
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    super.onPageFinished(view, url);
+
+                    if(url.contains("www.blub.tech"))
+                    {
+                        saveToken(url);
+                        openGradesPage();
+                    }
+
+                }
+            });
+            webView.loadUrl(D2LURL);
         }
     }
 
@@ -80,5 +95,15 @@ public class Login extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void saveToken(String token) {
+        SharedPreferences sharedPref = this.getSharedPreferences("com.a_wiseman_once_said.bulb", Context.MODE_PRIVATE);
+        sharedPref.edit().putString("token", token).apply();
+    }
+
+    public void openGradesPage() {
+        Intent gradesPageIntent = new Intent(this, GradesPage.class);
+        startActivity(gradesPageIntent);
     }
 }
