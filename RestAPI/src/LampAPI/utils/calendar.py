@@ -7,7 +7,7 @@ from copy import deepcopy
 from nltk.tokenize import sent_tokenize, word_tokenize
 
 class PDF:
-    def _extract_text(self, pdf_stream):
+    def _extract_text(self, pdf_data):
         pdf_reader = parser.PdfFileReader(pdf_data)
         text = ""
         for page_no in range(pdf_reader.numPages-1):
@@ -27,7 +27,7 @@ class PDF:
         if(pdf_stream != None):
             pdf_data = io.BytesIO(pdf_stream)
 
-        else if(pdf_file_name != None):
+        elif(pdf_file_name != None):
             assert type(pdf_file_name) == str
             pdf_data = open(pdf_file_name, 'rb')
         
@@ -46,8 +46,8 @@ class DataScrubber:
         "month full":r"(january|february|march|april|may|june|july|august|september|october|november|december)"
     }
     month = r"({0}|{1})".format(
-        self.pattern_stub["month abrev"], 
-        self.pattern_stub["month full"]
+        pattern_stubs["month abrev"], 
+        pattern_stubs["month full"]
     )
     assesments = r"(assignment|project|quiz|mid.term|final|lab|test)( \d)?"
 
@@ -79,7 +79,7 @@ class DataScrubber:
     def find_matches(self, pdf_text):
         regx_pattern = r"""({0})( \S+)?({1} \d)""".format(
             self.assesments, self.month)
-        
+
         search_results = re.findall(regx_pattern, pdf_text.lower())
         if search_results != []:
             return self._post_process(search_results)
