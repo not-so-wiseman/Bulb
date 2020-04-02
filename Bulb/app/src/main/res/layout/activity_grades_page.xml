@@ -150,12 +150,25 @@
                 <ImageView
                     android:id="@+id/mainPanel"
                     android:layout_width="fill_parent"
-                    android:layout_height="259dp"
+                    android:layout_height="400dp"
                     android:layout_gravity="center"
                     app:srcCompat="@drawable/ic_empty_card" />
 
+                <TextView
+                    android:id="@+id/courseAverageText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="COURSE AVERAGE"
+                    app:layout_constraintTop_toBottomOf="@+id/pie"
+                    android:layout_marginTop="100dp"
+                    android:textColor="#AAAAAA"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="16sp" />
+
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/courseBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
@@ -165,6 +178,19 @@
                     android:background="#E1E1E1"
                     android:textSize="14sp" />
 
+                <TextView
+                    android:id="@+id/courseAverage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="0%"
+                    android:textColor="#231F20"
+                    app:layout_constraintTop_toBottomOf="@+id/courseInfo"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="36sp" />
+
                 <ImageView
                     android:id="@+id/editBtn"
                     android:layout_width="35dp"
@@ -172,13 +198,38 @@
                     android:layout_marginLeft="290dp"
                     android:layout_marginRight="32dp"
                     android:layout_marginTop="60dp"
-                    app:layout_constraintBottom_toBottomOf="@id/button"
+                    app:layout_constraintBottom_toBottomOf="@id/courseBtn"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/button"
+                    app:layout_constraintTop_toTopOf="@+id/courseBtn"
                     app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@drawable/ic_edit" />
+
+                <TextView
+                    android:id="@+id/courseInfo"
+                    android:layout_width="239dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="60dp"
+                    app:layout_constraintEnd_toEndOf="@+id/editBtn"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="You need a 0% in the rest of the course to reach your goal"
+                    android:textColor="#AAAAAA"
+                    android:textSize="16sp" />
+
+                <ProgressBar
+                    android:id="@+id/pie"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    style="?android:progressBarStyleHorizontal"
+                    android:progress="80"
+                    android:progressDrawable="@drawable/circle"
+                    app:layout_constraintTop_toBottomOf="@+id/courseInfo"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+                </ProgressBar>
 
             </FrameLayout>
 

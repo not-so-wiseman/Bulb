@@ -1,7 +1,6 @@
 package com.a_wiseman_once_said.bulb;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuView;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,8 +9,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
+import android.widget.Button;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,10 +22,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -33,8 +31,9 @@ import javax.net.ssl.HttpsURLConnection;
 public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     private static JSONObject RESULT_JSON;
-    private static String GOAL = "";
+    private static String GOAL = "50";
     private static String COURSE_NAME = "";
+    private static String COURSE_AVERAGE = "";
     private static JSONArray COURSE_GRADES;
 
 
@@ -103,7 +102,9 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
             String result = getUrl.execute(endpoint).get();
             RESULT_JSON = new JSONObject(result);
             JSONObject currentCourse = RESULT_JSON.getJSONArray("CourseData").optJSONObject(0);
-            COURSE_GRADES = 
+
+            updateData(currentCourse);
+            updateUI();
 
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -192,6 +193,24 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
     public JSONObject filterForCourse(JSONArray courses) {
         return null;
     }
+
+    public void updateData(JSONObject currentCourse) throws JSONException {
+        COURSE_NAME = currentCourse.getString("Name");
+        COURSE_AVERAGE = currentCourse.getString("Average");
+        COURSE_GRADES = currentCourse.getJSONArray("Grades");
+    }
+
+    public void updateUI() {
+        Button btn = (Button) findViewById(R.id.courseBtn);
+        btn.setText(COURSE_NAME);
+
+        ProgressBar pieChart = (ProgressBar) findViewById(R.id.pie);
+        pieChart.setProgress(30);
+
+        TextView percent = (TextView) findViewById(R.id.courseAverage);
+        percent.setText(COURSE_AVERAGE);
+    }
+
 
 
 }
