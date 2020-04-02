@@ -205,7 +205,7 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         btn.setText(COURSE_NAME);
 
         String average = COURSE_AVERAGE.replace("%", "");
-        int progress = Integer.valueOf(average);
+        int progress = Integer.parseInt(average);
 
         ProgressBar pieChart = (ProgressBar) findViewById(R.id.pie);
         pieChart.setProgress(progress);

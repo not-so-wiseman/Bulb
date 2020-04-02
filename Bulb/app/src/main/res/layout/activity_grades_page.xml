@@ -220,8 +220,8 @@
 
                 <ProgressBar
                     android:id="@+id/pie"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="175dp"
+                    android:layout_height="175dp"
                     style="?android:progressBarStyleHorizontal"
                     android:progress="80"
                     android:progressDrawable="@drawable/circle"
