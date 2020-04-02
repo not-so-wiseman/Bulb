@@ -101,7 +101,8 @@ class Lamp:
             course_remaining_percents.append(percent)
 
         num_courses = len(course_remaining_percents)
-        return sum(course_remaining_percents)/num_courses
+        remianing = sum(course_remaining_percents)/num_courses
+        return remaining * 100
         
     def achieve_goal(self, course_no, goal):
         return self._return_grade_info(course_no).achieve(goal)
@@ -112,7 +113,7 @@ class Lamp:
     def grades_all(self):
         grades_json = {
             "Overall": {
-                "Average": self.overall_average(),
+                "Average": round(self.overall_average(),2),
                 "Remaining": self.overall_remaining()
             },
             "Courses": None
@@ -124,7 +125,7 @@ class Lamp:
         for course in courses.data:
             grade_info = self._return_grade_info(course.id)
             course.json["Grades"] = grade_info.categorized_items
-            course.json["Average"] = grade_info.average()
+            course.json["Average"] = round(grade_info.average(),2)
             courses_json.append(deepcopy(course.json))
         
         grades_json["Courses"] = courses_json
