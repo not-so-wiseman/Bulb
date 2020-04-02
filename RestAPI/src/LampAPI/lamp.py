@@ -129,7 +129,7 @@ class Lamp:
         for course in courses.data:
             grade_info = self._return_grade_info(course.id)
             course.json["Grades"] = grade_info.categorized_items
-            course.json["Average"] = self._percentage(grade_info.average())[0],
+            course.json["Average"] = self._percentage(grade_info.average()),
             courses_json.append(deepcopy(course.json))
         
         grades_json["CourseData"] = courses_json

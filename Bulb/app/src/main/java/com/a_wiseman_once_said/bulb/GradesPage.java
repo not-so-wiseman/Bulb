@@ -196,7 +196,7 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
 
     public void updateData(JSONObject currentCourse) throws JSONException {
         COURSE_NAME = currentCourse.getString("Name");
-        COURSE_AVERAGE = currentCourse.getString("Average");
+        COURSE_AVERAGE = currentCourse.getJSONArray("Average").getString(0);
         COURSE_GRADES = currentCourse.getJSONArray("Grades");
     }
 
@@ -205,10 +205,10 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         btn.setText(COURSE_NAME);
 
         String average = COURSE_AVERAGE.replace("%", "");
-        double progress = (double) average;
+        int progress = Integer.valueOf(average);
 
         ProgressBar pieChart = (ProgressBar) findViewById(R.id.pie);
-        pieChart.setProgress(30);
+        pieChart.setProgress(progress);
 
         TextView percent = (TextView) findViewById(R.id.courseAverage);
         percent.setText(COURSE_AVERAGE);
