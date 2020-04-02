@@ -7,7 +7,10 @@
     <title>Bulb</title>
 </head>
 <body>
-    <p>Login Successful!</p>
+    <h1>Welcome to Bulb!</h1>
+    <div class="alert-success" role="alert">
+        Login Successful, redirecting to app...
+    </div>
 </body>
 </html>
 
@@ -15,10 +18,20 @@
     body {
         background-image: linear-gradient(to right, #00AEC7, #00B398);
     }
-    p {
+    h1 {
         font-family: 'Nunito', sans-serif;
         text-align: center;
-        margin-top: 50px;
-        color: #231F20;
+        margin-top: 50%;
+        color: #ffffff;
+    }
+
+    .alert-success {
+        border-radius: 5px;
+        border: 2px solid #cae1cf;
+        font-family: 'Roboto', sans-serif;
+        padding: 12px 20px;
+        color: #5c8a66;
+        background-color: #d4edda;
+        text-align: center;
     }
 </style>

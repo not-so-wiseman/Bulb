@@ -2,7 +2,9 @@ import PyPDF3 as parser
 import io
 import re
 import nltk
+import calendar
 
+from datetime import datetime
 from copy import deepcopy
 from nltk.tokenize import sent_tokenize, word_tokenize
 
@@ -53,7 +55,7 @@ class DataScrubber:
 
     def _compress(self, matches):
         compressed_syllabus = []
-        for group in syllabus:
+        for group in matches:
             tmp = []
             index = ""
             for match in range(len(group)-1):
@@ -77,7 +79,7 @@ class DataScrubber:
         return matches
 
     def find_matches(self, pdf_text):
-        regx_pattern = r"""({0})( \S+)?({1} \d)""".format(
+        regx_pattern = r"""({0})( \S+)? ({1} \d)""".format(
             self.assesments, self.month)
 
         search_results = re.findall(regx_pattern, pdf_text.lower())
@@ -85,6 +87,17 @@ class DataScrubber:
             return self._post_process(search_results)
         else:
             return None
+
+
+class Calendar:
+    def __init__(self):
+        self.calendar = {}
+        dates = calendar.itermonthdates(2020, 5)
+         
+
+    def add_events(self, sllyabus):
+        pass
+
 
 
 

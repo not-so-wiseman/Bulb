@@ -2,6 +2,9 @@ import PyPDF3 as parser
 import io
 import re
 import nltk
+import calendar
+
+from datetime import datetime
 
 from copy import deepcopy
 from nltk.tokenize import sent_tokenize, word_tokenize
@@ -53,7 +56,7 @@ class DataScrubber:
 
     def _compress(self, matches):
         compressed_syllabus = []
-        for group in syllabus:
+        for group in matches:
             tmp = []
             index = ""
             for match in range(len(group)-1):
@@ -77,7 +80,7 @@ class DataScrubber:
         return matches
 
     def find_matches(self, pdf_text):
-        regx_pattern = r"""({0})( \S+)?({1} \d)""".format(
+        regx_pattern = r"""({0})( \S+)? ({1} \d)""".format(
             self.assesments, self.month)
 
         search_results = re.findall(regx_pattern, pdf_text.lower())
@@ -86,14 +89,41 @@ class DataScrubber:
         else:
             return None
 
-
+"""
 pdf = PDF(pdf_file_name='outline_prob.pdf')
 scrub = DataScrubber()
 
+
+
 matches = []
 for sent in pdf.sentances:
-    match = scrub.find_matches(sent)
+    match = scrub.find_matches(sent.lower())
+ 
     if match != None:
-        matches.append(match)
+        matches += match
 
 print(matches)
+"""
+calenader_lookup = {1:"January", 2:"Febuary", 3:"March", 4: "April", 5:"May",
+6:"June", 7:"July", 8:"August", 9:"September", 10:"October", 11:"Noverber", 12:"Decemebr"}
+
+current_month = datetime.now().month
+current_year = datetime.now().year
+cal = calendar.Calendar()
+
+calendar_json = []
+day_json = {"Day": None, "Event": None}
+
+for month in range(current_month, current_month+3):
+    month_json = {"Month": calenader_lookup[month], "Days": []}
+
+    dates = cal.itermonthdays(current_year, month)
+    for day in dates:
+        if day != 0:
+            tmp = deepcopy(day_json)
+            tmp["Day"] = day
+            month_json["Days"].append(tmp)
+
+    calendar_json.append(deepcopy(month_json))
+
+print(calendar_json)

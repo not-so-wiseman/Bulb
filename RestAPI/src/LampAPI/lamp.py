@@ -77,17 +77,32 @@ class Lamp:
         request = self._get(route)
         return CourseGrades(request.json())
 
+    def average(self, course_no):
+        average = self._return_grade_info(course_no).average()
+        return round(average, 2)
+
     def overall_average(self):
         course_ids = self._return_course_info().org_units()
         course_grades = []
         for course_no in course_ids:
             average = self._return_grade_info(course_no).average()
             course_grades.append(average)
-        return sum(course_no)
-        
-    def average(self, course_no):
-        return self._return_grade_info(course_no).average()
+        return sum(course_grades)
 
+    def remaining(self, course_no):
+        remaining = self._return_grade_info(course_no).remaining()
+        return round(remaining, 2)
+
+    def overall_remaining(self):
+        course_ids = self._return_course_info().org_units()
+        course_remaining_percents = []
+        for course_no in course_ids:
+            percent = self.remaining(course_no)
+            course_remaining_percents.append(percent)
+
+        num_courses = len(course_remaining_percents)
+        return sum(course_remaining_percents)/num_courses
+        
     def achieve_goal(self, course_no, goal):
         return self._return_grade_info(course_no).achieve(goal)
 
@@ -95,15 +110,25 @@ class Lamp:
         return self._return_grade_info(course_no).categorized_items
 
     def grades_all(self):
-        grades_json = []
+        grades_json = {
+            "Overall": {
+                "Average": self.overall_average(),
+                "Remaining": self.overall_remaining()
+            },
+            "Courses": None
+        }
+
+        courses_json = []
         courses = self._return_course_info()
         
         for course in courses.data:
             grade_info = self._return_grade_info(course.id)
             course.json["Grades"] = grade_info.categorized_items
             course.json["Average"] = grade_info.average()
-            grades_json.append(deepcopy(course.json))
+            courses_json.append(deepcopy(course.json))
         
+        grades_json["Courses"] = courses_json
+
         return json.dumps(grades_json)
             
 """

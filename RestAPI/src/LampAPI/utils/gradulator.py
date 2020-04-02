@@ -24,7 +24,8 @@ class GradeObject:
             "Name": self.name,
             "Points": self.points,
             "Weight": self.weight, 
-            "Type": self.type
+            "Type": self.type,
+            "Percent": (self.points/self.weight)*100
         }
         return data
 
@@ -61,6 +62,10 @@ class CourseGrades:
     
     def average(self):
         return (self._numerator/self._demominator)*100
+
+    def remaining(self):
+        remaining_percentage = (100 - self._demominator)/100
+        return remaining_percentage
 
     def _achievable_percentage(self, goal):
         if self._demominator == 100:
