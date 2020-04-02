@@ -101,7 +101,7 @@ class Lamp:
             course_remaining_percents.append(percent)
 
         num_courses = len(course_remaining_percents)
-        remianing = sum(course_remaining_percents)/num_courses
+        remaining = sum(course_remaining_percents)/num_courses
         return remaining * 100
         
     def achieve_goal(self, course_no, goal):
