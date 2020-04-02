@@ -231,6 +231,16 @@
                     android:gravity="center">
                 </ProgressBar>
 
+                <ListView
+                    android:id="@+id/gradeItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/pie"
+                    android:layout_marginTop="175dp"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+                </ListView>
+
             </FrameLayout>
 
 

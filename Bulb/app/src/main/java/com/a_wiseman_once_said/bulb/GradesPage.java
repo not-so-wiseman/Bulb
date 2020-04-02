@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -194,6 +196,20 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         return null;
     }
 
+    public ArrayList<String> getStringofGrades() throws JSONException {
+        ArrayList<String> grades = new ArrayList<String>();
+
+        for( int i = 0; i < COURSE_GRADES.length(); i++ ){
+            JSONObject gradeItem = COURSE_GRADES.getJSONObject(i);
+            String name = gradeItem.getString("Name");
+            String points = "(".concat(gradeItem.getString("Points")).concat(")");
+            String percent = gradeItem.getString("Percent").concat("%");
+            grades.add(name.concat("\t\t").concat(points).concat("\t").concat(percent));
+        }
+
+        return null;
+    }
+
     public void updateData(JSONObject currentCourse) throws JSONException {
         COURSE_NAME = currentCourse.getString("Name");
         COURSE_AVERAGE = currentCourse.getJSONArray("Average").getString(0);
@@ -201,17 +217,23 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
     }
 
     public void updateUI() {
+        // Set button name
         Button btn = (Button) findViewById(R.id.courseBtn);
         btn.setText(COURSE_NAME);
 
+        // Update progress bar/pie chart
         String gradeString = COURSE_AVERAGE.replace("%", "");
-        //int progress = Integer.parseInt(gradeString);
-
+        int progress = Integer.parseInt(gradeString);
         ProgressBar pieChart = (ProgressBar) findViewById(R.id.pie);
-        pieChart.setProgress(25);
+        pieChart.setProgress(progress);
 
+        // Update course average
         TextView percent = (TextView) findViewById(R.id.courseAverage);
-        percent.setText(gradeString);
+        percent.setText(COURSE_AVERAGE);
+
+        // Update grades list
+        ListView grades = (ListView) findViewById(R.id.gradeItems);
+
     }
 
 

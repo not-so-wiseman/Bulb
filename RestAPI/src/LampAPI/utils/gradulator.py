@@ -22,8 +22,7 @@ class GradeObject:
     def json(self):
         data = {
             "Name": self.name,
-            "Points": self.points,
-            "Weight": self.weight, 
+            "Points": "({}/{})".format(self.points, self.weight),
             "Type": self.type,
             "Percent": (self.points/self.weight)*100
         }
