@@ -78,8 +78,7 @@ class Lamp:
         return CourseGrades(request.json())
 
     def _percentage(self, decimal):
-        decimal = round(decimal, 0)
-        decimal = decimal.split(".")[0]
+        decimal = round(decimal)
         return "{}%".format(decimal)
 
     def average(self, course_no):
