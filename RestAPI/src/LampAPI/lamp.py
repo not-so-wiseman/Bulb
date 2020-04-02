@@ -120,7 +120,6 @@ class Lamp:
                 "Average": self._percentage(self.overall_average()),
                 "Remaining": self._percentage(self.overall_remaining())
             },
-            "CourseList":self.org_units(),
             "CourseData": None
         }
 

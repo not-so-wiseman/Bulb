@@ -1,11 +1,13 @@
 package com.a_wiseman_once_said.bulb;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuView;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -20,6 +22,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -28,6 +31,12 @@ import java.util.concurrent.ExecutionException;
 import javax.net.ssl.HttpsURLConnection;
 
 public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+
+    private static JSONObject RESULT_JSON;
+    private static String GOAL = "";
+    private static String COURSE_NAME = "";
+    private static JSONArray COURSE_GRADES;
+
 
     // Fetches JSON from Bulb's API
     public class FetchURL extends AsyncTask<String, Void, String> {
@@ -65,7 +74,6 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-
             try {
                 JSONObject gradesData = new JSONObject(result);
                 JSONObject overallJSON = gradesData.getJSONObject("Overall");
@@ -92,18 +100,63 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         GradesPage.FetchURL getUrl = new GradesPage.FetchURL();
         try {
             String endpoint = buildEndPoint("grades-all");
-            String gradeResultsJSON = getUrl.execute(endpoint).get();
+            String result = getUrl.execute(endpoint).get();
+            RESULT_JSON = new JSONObject(result);
+            JSONObject currentCourse = RESULT_JSON.getJSONArray("CourseData").optJSONObject(0);
+            COURSE_GRADES = 
+
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item1:
+                Toast.makeText(this, "Item 1 clicked", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.item2:
+                Toast.makeText(this, "Item 2 clicked", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public void showMenu(View btn) throws JSONException {
+        PopupMenu popup = new PopupMenu(this, btn);
+        popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.courses_selector);
+
+        Menu menuOptions = popup.getMenu();
+        JSONArray courses = RESULT_JSON.getJSONArray("CourseData");
+
+        for( int i = 0; i < courses.length(); i++ ) {
+            String courseName = courses.getJSONObject(i).getString("Name");
+            menuOptions.getItem(i).setTitle(courseName);
+            menuOptions.getItem(i).setVisible(true);
+        }
+
+        popup.show();
+    }
+
 
     public void setText(int id, String text){
         TextView textView = (TextView) findViewById(id);
         textView.setText(text);
     }
+
 
     public String getToken() {
         SharedPreferences sharedPref = this.getSharedPreferences("com.a_wiseman_once_said.bulb", Context.MODE_PRIVATE);
@@ -136,28 +189,9 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         setText(R.id.remaining, overallRemaining);
     }
 
-    public void showMenu(View btn) {
-        PopupMenu popup = new PopupMenu(this, btn);
-        popup.setOnMenuItemClickListener(this);
-        popup.inflate(R.menu.courses_selector);
-        popup.show();
-    }
-
     public JSONObject filterForCourse(JSONArray courses) {
         return null;
     }
 
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item1:
-                Toast.makeText(this, "Item 1 clicked", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.item2:
-                Toast.makeText(this, "Item 2 clicked", Toast.LENGTH_SHORT).show();
-                return true;
-            default:
-                return false;
-        }
-    }
+
 }

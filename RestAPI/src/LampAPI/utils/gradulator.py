@@ -42,9 +42,9 @@ class CourseGrades:
         return items
 
     def _categorize(self, grades_list):
-        sorted_grades = {}
+        sorted_grades = []
         for item in grades_list:
-            sorted_grades[item.type] = item.json()
+            sorted_grades.append(item.json())
         return sorted_grades
 
     def _total_fraction(self):
