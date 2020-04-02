@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupMenu;
@@ -202,12 +203,12 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         for( int i = 0; i < COURSE_GRADES.length(); i++ ){
             JSONObject gradeItem = COURSE_GRADES.getJSONObject(i);
             String name = gradeItem.getString("Name");
-            String points = "(".concat(gradeItem.getString("Points")).concat(")");
+            String points = gradeItem.getString("Points");
             String percent = gradeItem.getString("Percent").concat("%");
-            grades.add(name.concat("\t\t").concat(points).concat("\t").concat(percent));
+            grades.add(name.concat("            ").concat(points).concat("    ").concat(percent));
         }
 
-        return null;
+        return grades;
     }
 
     public void updateData(JSONObject currentCourse) throws JSONException {
@@ -216,7 +217,7 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         COURSE_GRADES = currentCourse.getJSONArray("Grades");
     }
 
-    public void updateUI() {
+    public void updateUI() throws JSONException {
         // Set button name
         Button btn = (Button) findViewById(R.id.courseBtn);
         btn.setText(COURSE_NAME);
@@ -232,8 +233,11 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         percent.setText(COURSE_AVERAGE);
 
         // Update grades list
-        ListView grades = (ListView) findViewById(R.id.gradeItems);
-
+        ListView gradeList = (ListView) findViewById(R.id.gradeItems);
+        ArrayList<String> grades = getStringofGrades();
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_list_item_1, grades);
+        gradeList.setAdapter(arrayAdapter);
     }
 
 
