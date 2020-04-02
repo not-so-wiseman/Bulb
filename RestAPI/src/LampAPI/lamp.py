@@ -79,6 +79,7 @@ class Lamp:
 
     def _percentage(self, decimal):
         decimal = round(decimal, 0)
+        decimal = decimal.split(".")[0]
         return "{}%".format(decimal)
 
     def average(self, course_no):
