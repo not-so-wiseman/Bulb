@@ -77,6 +77,10 @@ class Lamp:
         request = self._get(route)
         return CourseGrades(request.json())
 
+    def _percentage(self, decimal):
+        decimal = round(decimal, 2)
+        return "{}%".format(decimal)
+
     def average(self, course_no):
         average = self._return_grade_info(course_no).average()
         return round(average, 2)
@@ -113,10 +117,11 @@ class Lamp:
     def grades_all(self):
         grades_json = {
             "Overall": {
-                "Average": round(self.overall_average(),2),
-                "Remaining": self.overall_remaining()
+                "Average": self._percentage(self.overall_average()),
+                "Remaining": self._percentage(self.overall_remaining())
             },
-            "Courses": None
+            "CourseList":self.org_units(),
+            "CourseData": None
         }
 
         courses_json = []
@@ -125,10 +130,10 @@ class Lamp:
         for course in courses.data:
             grade_info = self._return_grade_info(course.id)
             course.json["Grades"] = grade_info.categorized_items
-            course.json["Average"] = round(grade_info.average(),2)
+            course.json["Average"] = self._percentage(grade_info.average()),
             courses_json.append(deepcopy(course.json))
         
-        grades_json["Courses"] = courses_json
+        grades_json["CourseData"] = courses_json
 
         return json.dumps(grades_json)
             

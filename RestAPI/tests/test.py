@@ -13,6 +13,7 @@ d2l_login = requests.get('https://www.blub.tech/auth').text.strip('"')
 driver = webdriver.Chrome()
 driver.get(d2l_login)
 
+
 d2l_only = driver.find_element_by_xpath("/html/body/main/div[2]/p[2]/a")
 d2l_only.click()
 
@@ -22,7 +23,7 @@ password_input = driver.find_element_by_id("password")
 password_input.send_keys(TEST_STUDENT.password)
 
 login_btn = driver.find_element_by_xpath('//*[@id="externlLoginForm"]/form/button')
-login_btn.click()
+#login_btn.click()
 
 
 """

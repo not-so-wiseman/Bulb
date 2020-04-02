@@ -62,14 +62,14 @@ public class Login extends AppCompatActivity {
             String D2LURL = result.replace("\"", "");
 
             webView = (WebView) findViewById(R.id.d2lLogin);
-
+            //webView.clearCache(true);
             webView.getSettings().setJavaScriptEnabled(true);
             webView.setWebViewClient(new WebViewClient(){
                 @Override
                 public void onPageFinished(WebView view, String url) {
                     super.onPageFinished(view, url);
 
-                    if(url.contains("www.blub.tech"))
+                    if(url.contains("https://www.blub.tech"))
                     {
                         saveToken(url);
                         openGradesPage();
