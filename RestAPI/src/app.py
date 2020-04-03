@@ -59,9 +59,18 @@ def course_goal(api, org_unit):
     goal = request.args.get("goal")
     return api.achieve_goal(course_no=org_unit, goal=goal)
 
-"""
+
 @app.route('/api/calendar', methods=['GET'])
 @validate_api
 def get_topics(api):
-    return api.calendar(336459).pdf
-"""
+    dummyCalendar = {
+        "March": [
+            {"Name":"Assignment 1 Due", "Day":15},
+            {"Name":"Midterm", "Day":20}
+        ]
+        "April": [
+            {"Name":"Assignment 2 Due", "Day":27},
+            {"Name":"Quiz 1", "Day":3}
+        ]
+    }
+    return json.dumps(dummyCalendar) 

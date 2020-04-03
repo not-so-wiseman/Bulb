@@ -3,6 +3,7 @@ package com.a_wiseman_once_said.bulb;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -98,6 +100,8 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grades_page);
+        Button calculatorBtn = (Button) findViewById(R.id.calcBtn);
+        calculatorBtn.setBackground(getResources().getDrawable(R.drawable.ic_calculator_icon_disabled));
 
         GradesPage.FetchURL getUrl = new GradesPage.FetchURL();
         try {
@@ -240,6 +244,9 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         gradeList.setAdapter(arrayAdapter);
     }
 
-
+    public void switchToCalendar(View view) {
+        Intent calendarIntent = new Intent(this, Calendar.class);
+        startActivity(calendarIntent);
+    }
 
 }

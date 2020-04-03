@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:elevation="4dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="Bulb"
+        android:layout_marginLeft="16dp"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/calcBtn"
+        android:layout_width="22dp"
+        android:layout_height="25dp"
+        android:layout_gravity="right"
+        android:onClick="switchToCalculator"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/ic_calculator_icon"
+        />
+
+    <Button
+        android:id="@+id/calendarBtn"
+        android:layout_width="22dp"
+        android:layout_height="25dp"
+        android:layout_gravity="right"
+        android:onClick="switchToCalendar"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/ic_calendar_icon"
+        />
+</androidx.appcompat.widget.Toolbar>
