@@ -67,10 +67,10 @@ def get_topics(api):
         "March": [
             {"Name":"Assignment 1 Due", "Day":15},
             {"Name":"Midterm", "Day":20}
-        ]
+        ],
         "April": [
             {"Name":"Assignment 2 Due", "Day":27},
             {"Name":"Quiz 1", "Day":3}
         ]
     }
-    return json.dumps(dummyCalendar) 
+    return str(dummyCalendar) 
