@@ -83,4 +83,4 @@ def get_topics(api):
         "11": [],
         "12": []
     }
-    return str(dummyCalendar) 
+    return json.dumps(dummyCalendar) 
