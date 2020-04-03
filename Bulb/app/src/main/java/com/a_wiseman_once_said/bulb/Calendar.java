@@ -1,5 +1,6 @@
 package com.a_wiseman_once_said.bulb;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -22,14 +23,25 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class Calendar extends AppCompatActivity {
+public class Calendar extends AppCompatActivity implements CalendarView.OnDateChangeListener{
 
     private static JSONObject CALENDAR;
+
+    @Override
+    public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+        
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 
     // Fetches JSON from Bulb's API
     public class FetchURL extends AsyncTask<String, Void, String> {
@@ -100,6 +112,8 @@ public class Calendar extends AppCompatActivity {
         }
     }
 
+
+
     public String getToken() {
         SharedPreferences sharedPref = this.getSharedPreferences("com.a_wiseman_once_said.bulb", Context.MODE_PRIVATE);
         String token = sharedPref.getString("token", "");
@@ -118,16 +132,19 @@ public class Calendar extends AppCompatActivity {
         JSONArray events = CALENDAR.getJSONArray(month);
 
         ListView eventsList = (ListView) findViewById(R.id.events);
-        eventsList.setAdapter(arrayAdapter);
 
-        ArrayList<String> monthlyEvenets = new ArrayList<String>();
+        ArrayList<String> monthlyEvents = new ArrayList<String>();
         for( int i = 0; i < events.length(); i++ ){
             JSONObject aEvent = events.getJSONObject(i);
-            String eventName = aEvent.getString("Event")
+            String eventName = aEvent.getString("Event");
+            String eventDay = aEvent.getString("Day");
+            monthlyEvents.add(eventName.concat("            ").concat(eventDay));
         }
-        ArrayList<String> grades = getStringofGrades();
+
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_list_item_1, grades);
+                this, android.R.layout.simple_list_item_1, monthlyEvents);
+        eventsList.setAdapter(arrayAdapter);
+
     }
 
     public void switchToCalculator(View view) {
