@@ -9,7 +9,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.ListView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,6 +26,8 @@ import java.util.concurrent.ExecutionException;
 import javax.net.ssl.HttpsURLConnection;
 
 public class Calendar extends AppCompatActivity {
+
+    private static JSONObject CALENDAR;
 
     // Fetches JSON from Bulb's API
     public class FetchURL extends AsyncTask<String, Void, String> {
@@ -61,8 +66,7 @@ public class Calendar extends AppCompatActivity {
             super.onPostExecute(result);
 
             try {
-                JSONObject gradesData = new JSONObject(result);
-
+                CALENDAR = new JSONObject(result);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -78,10 +82,14 @@ public class Calendar extends AppCompatActivity {
         Button calendarBtn = (Button) findViewById(R.id.calendarBtn);
         calendarBtn.setBackground(getResources().getDrawable(R.drawable.ic_calendar_icon_disabled));
 
+        CalendarView calendar = (CalendarView) findViewById(R.id.calendarView);
+
+
         Calendar.FetchURL getUrl = new Calendar.FetchURL();
         try {
-            String endpoint = buildEndPoint("grades-all");
+            String endpoint = buildEndPoint("calendar");
             String result = getUrl.execute(endpoint).get();
+
 
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -102,6 +110,10 @@ public class Calendar extends AppCompatActivity {
         String endPoint = "https://www.blub.tech/api/";
         endPoint = endPoint.concat(route).concat("?token=").concat(userToken);
         return endPoint;
+    }
+
+    public void updateEvents(String month) throws JSONException {
+        JSONArray events = CALENDAR.getJSONArray(month);
     }
 
     public void switchToCalculator(View view) {
