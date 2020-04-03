@@ -35,7 +35,11 @@ public class Calendar extends AppCompatActivity implements CalendarView.OnDateCh
 
     @Override
     public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-        
+        try {
+            updateEvents(month);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -75,17 +79,6 @@ public class Calendar extends AppCompatActivity implements CalendarView.OnDateCh
             return null;
         }
 
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            try {
-                CALENDAR = new JSONObject(result);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
     }
 
     @Override
@@ -96,20 +89,16 @@ public class Calendar extends AppCompatActivity implements CalendarView.OnDateCh
         Button calendarBtn = (Button) findViewById(R.id.calendarBtn);
         calendarBtn.setBackground(getResources().getDrawable(R.drawable.ic_calendar_icon_disabled));
 
-        CalendarView calendar = (CalendarView) findViewById(R.id.calendarView);
-
-
         Calendar.FetchURL getUrl = new Calendar.FetchURL();
         try {
             String endpoint = buildEndPoint("calendar");
             String result = getUrl.execute(endpoint).get();
-
-
-        } catch (ExecutionException e) {
+            CALENDAR = new JSONObject(result);
+            updateEvents(1);
+        } catch (JSONException | ExecutionException | InterruptedException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+         }
+
     }
 
 
@@ -128,12 +117,14 @@ public class Calendar extends AppCompatActivity implements CalendarView.OnDateCh
         return endPoint;
     }
 
-    public void updateEvents(String month) throws JSONException {
-        JSONArray events = CALENDAR.getJSONArray(month);
+    public void updateEvents(int monthNum) throws JSONException {
+
+        JSONArray events = CALENDAR.getJSONArray("3");
 
         ListView eventsList = (ListView) findViewById(R.id.events);
 
         ArrayList<String> monthlyEvents = new ArrayList<String>();
+
         for( int i = 0; i < events.length(); i++ ){
             JSONObject aEvent = events.getJSONObject(i);
             String eventName = aEvent.getString("Event");

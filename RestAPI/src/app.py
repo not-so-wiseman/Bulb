@@ -64,23 +64,23 @@ def course_goal(api, org_unit):
 @validate_api
 def get_topics(api):
     dummyCalendar = {
-        1: [],
-        2: [],
-        3: [
+        "1": [],
+        "2": [],
+        "3": [
             {"Name":"Assignment 1 Due", "Day":15},
             {"Name":"Midterm", "Day":20}
         ],
-        4: [
+        "4": [
             {"Name":"Assignment 2 Due", "Day":27},
             {"Name":"Quiz 1", "Day":3}
         ],
-        5: [],
-        6: [],
-        7:[],
-        8:[],
-        9:[],
-        10: [],
-        11: [],
-        12: []
+        "5": [],
+        "6": [],
+        "7":[],
+        "8":[],
+        "9":[],
+        "10": [],
+        "11": [],
+        "12": []
     }
     return str(dummyCalendar) 
