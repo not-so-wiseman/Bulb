@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ListView;
@@ -21,6 +22,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -114,6 +116,18 @@ public class Calendar extends AppCompatActivity {
 
     public void updateEvents(String month) throws JSONException {
         JSONArray events = CALENDAR.getJSONArray(month);
+
+        ListView eventsList = (ListView) findViewById(R.id.events);
+        eventsList.setAdapter(arrayAdapter);
+
+        ArrayList<String> monthlyEvenets = new ArrayList<String>();
+        for( int i = 0; i < events.length(); i++ ){
+            JSONObject aEvent = events.getJSONObject(i);
+            String eventName = aEvent.getString("Event")
+        }
+        ArrayList<String> grades = getStringofGrades();
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_list_item_1, grades);
     }
 
     public void switchToCalculator(View view) {

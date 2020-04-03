@@ -78,7 +78,7 @@ def get_topics(api):
         "June": [],
         "July":[],
         "August":[],
-        "September":[]
+        "September":[],
         "October": [],
         "November": [],
         "December": []

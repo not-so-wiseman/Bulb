@@ -84,11 +84,6 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
                 setDescription(overallJSON);
                 setOverallPanels(overallJSON);
 
-
-                // gradesJSON.getJSONObject(0);
-                //String average = courseData.getString("Average");
-                //setText(R.id.average, average);
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -122,20 +117,15 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
-
-    }
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item1:
-                Toast.makeText(this, "Item 1 clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Refreshed Page", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.item2:
-                Toast.makeText(this, "Item 2 clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Refreshed Page", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return false;
