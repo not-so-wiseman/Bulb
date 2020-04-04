@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -94,13 +95,12 @@ public class Calendar extends AppCompatActivity implements CalendarView.OnDateCh
             String endpoint = buildEndPoint("calendar");
             String result = getUrl.execute(endpoint).get();
             CALENDAR = new JSONObject(result);
-            updateEvents(1);
+            updateEvents(4);
         } catch (JSONException | ExecutionException | InterruptedException e) {
             e.printStackTrace();
          }
 
     }
-
 
 
     public String getToken() {
@@ -118,18 +118,19 @@ public class Calendar extends AppCompatActivity implements CalendarView.OnDateCh
     }
 
     public void updateEvents(int monthNum) throws JSONException {
-
-        JSONArray events = CALENDAR.getJSONArray("3");
+        String month = String.valueOf(monthNum);
+        JSONArray events = CALENDAR.getJSONArray(month);
 
         ListView eventsList = (ListView) findViewById(R.id.events);
 
         ArrayList<String> monthlyEvents = new ArrayList<String>();
 
+
         for( int i = 0; i < events.length(); i++ ){
             JSONObject aEvent = events.getJSONObject(i);
-            String eventName = aEvent.getString("Event");
-            String eventDay = aEvent.getString("Day");
-            monthlyEvents.add(eventName.concat("            ").concat(eventDay));
+            String eventName = aEvent.getString("Name").concat("\n");
+            String eventDate = aEvent.getString("Month") + " " + aEvent.getString("Day");
+            monthlyEvents.add(eventName + eventDate);
         }
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(

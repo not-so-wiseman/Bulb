@@ -67,12 +67,12 @@ def get_topics(api):
         "1": [],
         "2": [],
         "3": [
-            {"Name":"Assignment 1 Due", "Day":15},
-            {"Name":"Midterm", "Day":20}
+            {"Name":"Assignment 1 Due", "Month": "March" ,"Day":15},
+            {"Name":"Midterm", "Month": "March", "Day":20}
         ],
         "4": [
-            {"Name":"Assignment 2 Due", "Day":27},
-            {"Name":"Quiz 1", "Day":3}
+            {"Name":"Assignment 2 Due", "Month": "April", "Day":27},
+            {"Name":"Quiz 1", "Month": "April", "Day":3}
         ],
         "5": [],
         "6": [],
