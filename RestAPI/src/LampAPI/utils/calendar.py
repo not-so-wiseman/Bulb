@@ -7,6 +7,7 @@ import calendar
 from datetime import date, datetime
 from copy import deepcopy
 from nltk.tokenize import sent_tokenize, word_tokenize
+nltk.download('punkt')
 
 
 import PyPDF3 as parser
