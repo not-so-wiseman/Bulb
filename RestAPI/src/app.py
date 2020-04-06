@@ -66,13 +66,13 @@ def course_goal(api, org_unit):
 
 @app.route('/api/<org_unit>/calendar', methods=['GET'])
 @validate_api
-def get_topics(api, org_unit):
+def course_calendar(api, org_unit):
     calendar = api.course_calendar(org_unit)
     return json.dumps(calendar.dates) 
 
 
 @app.route('/api/calendar', methods=['GET'])
 @validate_api
-def get_topics(api):
+def calendar_full(api):
     calendars = api.calendar_full()
     return json.dumps(calendars.dates) 
