@@ -105,6 +105,9 @@ public class Calendar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
+        Button calendarBtn = (Button) findViewById(R.id.calendarBtn);
+        calendarBtn.setBackground(getResources().getDrawable(R.drawable.ic_calendar_icon_disabled));
+        calendarBtn.setEnabled(false);
 
         MaterialCalendarView calendarView = (MaterialCalendarView) findViewById(R.id.calendarView);
         calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
@@ -120,10 +123,6 @@ public class Calendar extends AppCompatActivity {
                 }
             }
         });
-
-
-        Button calendarBtn = (Button) findViewById(R.id.calendarBtn);
-        calendarBtn.setBackground(getResources().getDrawable(R.drawable.ic_calendar_icon_disabled));
 
         FetchURL getUrl = new FetchURL();
         try {

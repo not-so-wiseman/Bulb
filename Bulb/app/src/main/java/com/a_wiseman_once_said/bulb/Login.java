@@ -62,7 +62,7 @@ public class Login extends AppCompatActivity {
             String D2LURL = result.replace("\"", "");
 
             webView = (WebView) findViewById(R.id.d2lLogin);
-            webView.clearCache(true);
+            webView.getSettings().setAppCacheEnabled(false);
             webView.getSettings().setJavaScriptEnabled(true);
             webView.setWebViewClient(new WebViewClient(){
                 @Override

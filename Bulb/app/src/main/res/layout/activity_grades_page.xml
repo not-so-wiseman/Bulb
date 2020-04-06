@@ -192,20 +192,21 @@
                     android:layout_gravity="center|top"
                     android:textSize="36sp" />
 
-                <ImageView
+                <Button
                     android:id="@+id/editBtn"
                     android:layout_width="35dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="290dp"
                     android:layout_marginRight="40dp"
                     android:layout_marginTop="60dp"
+                    android:background="@drawable/ic_edit"
+                    android:onClick="updateGoalMenu"
                     app:layout_constraintBottom_toBottomOf="@id/courseBtn"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/courseBtn"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@drawable/ic_edit" />
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/courseInfo"

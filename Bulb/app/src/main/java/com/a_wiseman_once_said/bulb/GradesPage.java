@@ -17,7 +17,6 @@ import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,13 +32,21 @@ import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, editGradeLogic.EditGradeDialogListener {
 
     private static JSONObject RESULT_JSON;
-    private static String GOAL = "50";
+
+    private static JSONObject COURSE;
     private static String COURSE_NAME = "";
     private static String COURSE_AVERAGE = "";
     private static JSONArray COURSE_GRADES;
+    private static String GOAL = "You need a 0% in the rest of the course to reach your goal";
+
+    @Override
+    public void applyTexts(String goal) throws JSONException {
+        getGoal(goal);
+        Toast.makeText(this, goal, Toast.LENGTH_SHORT).show();
+    }
 
 
     // Fetches JSON from Bulb's API
@@ -73,49 +80,36 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
 
             return null;
         }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            try {
-                JSONObject gradesData = new JSONObject(result);
-
-                RESULT_JSON = new JSONObject(result);
-
-                JSONObject currentCourse = RESULT_JSON.getJSONArray("CourseData").optJSONObject(0);
-                updateData(currentCourse);
-
-                updateCourseUI();
-                updateOverallUI();
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grades_page);
+
         Button calculatorBtn = (Button) findViewById(R.id.calcBtn);
         calculatorBtn.setBackground(getResources().getDrawable(R.drawable.ic_calculator_icon_disabled));
+        calculatorBtn.setEnabled(false);
 
-        GradesPage.FetchURL getUrl = new GradesPage.FetchURL();
-        String endpoint = buildEndPoint("grades-all");
+        Button editBtn = (Button) findViewById(R.id.editBtn);
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateGoalMenu(v);
+            }
+        });
+
         try {
-            String result = getUrl.execute(endpoint).get();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+            getGrades();
+            getGoal("50");
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
     }
 
 
+    // Dropdown Menu Functions
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         Toast.makeText(this, "Refreshed Page", Toast.LENGTH_SHORT).show();
@@ -138,13 +132,15 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         popup.show();
     }
 
-
-    public void setText(int id, String text){
-        TextView textView = (TextView) findViewById(id);
-        textView.setText(text);
+    public void updateGoalMenu(View view) {
+        editGradeLogic dialog = new editGradeLogic();
+        dialog.show(getSupportFragmentManager(), "edit goals");
     }
 
 
+
+
+    // Auth. functions
     public String getToken() {
         SharedPreferences sharedPref = this.getSharedPreferences("com.a_wiseman_once_said.bulb", Context.MODE_PRIVATE);
         String token = sharedPref.getString("token", "");
@@ -152,13 +148,16 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         return token;
     }
 
+
+
+
+    // String formatting
     public String buildEndPoint(String route) {
         String userToken = getToken();
         String endPoint = "https://www.blub.tech/api/";
         endPoint = endPoint.concat(route).concat("?token=").concat(userToken);
         return endPoint;
     }
-
 
     public ArrayList<String> getStringofGrades() throws JSONException {
         ArrayList<String> grades = new ArrayList<String>();
@@ -174,10 +173,13 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         return grades;
     }
 
-    public void updateData(JSONObject currentCourse) throws JSONException {
-        COURSE_NAME = currentCourse.getString("Name");
-        COURSE_AVERAGE = currentCourse.getJSONArray("Average").getString(0);
-        COURSE_GRADES = currentCourse.getJSONArray("Grades");
+
+
+
+    // UI functions
+    public void setText(int id, String text){
+        TextView textView = (TextView) findViewById(id);
+        textView.setText(text);
     }
 
     public void updateOverallUI() throws JSONException {
@@ -207,8 +209,7 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         pieChart.setProgress(progress);
 
         // Update course average
-        TextView percent = (TextView) findViewById(R.id.courseAverage);
-        percent.setText(COURSE_AVERAGE);
+        setText(R.id.courseAverage,COURSE_AVERAGE);
 
         // Update grades list
         ListView gradeList = (ListView) findViewById(R.id.gradeItems);
@@ -217,13 +218,76 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
                 this, android.R.layout.simple_list_item_1, grades);
         gradeList.setAdapter(arrayAdapter);
 
-
+        // Update goals description
+        setText(R.id.courseInfo,GOAL);
     }
 
-    public void updateGoal() {
 
+
+
+    // HTTP Requests and handling
+    public void getGrades() {
+        GradesPage.FetchURL getUrl = new GradesPage.FetchURL();
+        String endpoint = buildEndPoint("grades-all");
+
+        try {
+            String result = getUrl.execute(endpoint).get();
+
+            RESULT_JSON = new JSONObject(result);
+
+            JSONObject currentCourse = RESULT_JSON.getJSONArray("CourseData").optJSONObject(0);
+            updateData(currentCourse);
+
+            updateCourseUI();
+            updateOverallUI();
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
+    public void getGoal(String goal) throws JSONException {
+        GradesPage.FetchURL getUrl = new GradesPage.FetchURL();
+
+        String selectedCourseId = COURSE.getString("Id");
+        String endpoint = buildEndPoint("grades/" + selectedCourseId + "/goal" );
+        endpoint += ("&goal=" + goal);
+
+        try {
+            String result = getUrl.execute(endpoint).get();
+
+            JSONObject goalResult = new JSONObject(result);
+            String gradeToAchieve = goalResult.getString("gradeToAchieve");
+            GOAL = "You need a " + gradeToAchieve + "% in the rest of the course to reach your goal";
+
+            updateCourseUI();
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateData(JSONObject currentCourse) throws JSONException {
+        COURSE = currentCourse;
+        COURSE_NAME = COURSE.getString("Name");
+        COURSE_AVERAGE = COURSE.getJSONArray("Average").getString(0);
+        COURSE_GRADES = COURSE.getJSONArray("Grades");
+    }
+
+
+
+
+
+
+    // Page Navigation functions
     public void switchToCalendar(View view) {
         Intent calendarIntent = new Intent(this, Calendar.class);
         startActivity(calendarIntent);
