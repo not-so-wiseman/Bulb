@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,23 +28,24 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.HttpsURLConnection;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.DayViewDecorator;
+import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
+import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
 public class Calendar extends AppCompatActivity {
 
     private static JSONObject CALENDAR;
 
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-        Toast.makeText(this, "BUTTon", Toast.LENGTH_SHORT).show();
-    }
 
     // Fetches JSON from Bulb's API
     public class FetchURL extends AsyncTask<String, Void, String> {
@@ -79,9 +81,24 @@ public class Calendar extends AppCompatActivity {
 
     }
 
-    public void TOASTY (){
-        Toast.makeText(this, "Changed Date", Toast.LENGTH_SHORT).show();
+    public class EventDecorator implements DayViewDecorator {
+        private final HashSet<CalendarDay> dates;
+
+        public EventDecorator(Collection<CalendarDay> dates) {
+            this.dates = new HashSet<>(dates);
+        }
+
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            return dates.contains(day);
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.setSelectionDrawable(getResources().getDrawable(R.drawable.ic_calendar_empty));
+        }
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +113,7 @@ public class Calendar extends AppCompatActivity {
 
                 int month = date.getMonth();
                 try {
+                    calendarChangeAlert();
                     updateEvents(month, widget);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -115,6 +133,7 @@ public class Calendar extends AppCompatActivity {
 
             int currentMonth = CalendarDay.today().getMonth();
             updateEvents(currentMonth, calendarView);
+            highlightCurrentDay(calendarView);
 
         } catch (JSONException | ExecutionException | InterruptedException e) {
             e.printStackTrace();
@@ -157,7 +176,7 @@ public class Calendar extends AppCompatActivity {
             monthlyEvents.add(eventName + "\n" + eventMonthStr + " " + eventDayStr);
 
             CalendarDay calDay = CalendarDay.from(year, monthNum, Integer.parseInt(eventDayStr));
-            widget.setDateSelected(calDay, true);
+            widget.addDecorator(new EventDecorator(Collections.singleton(calDay)));
         }
 
 
@@ -166,6 +185,19 @@ public class Calendar extends AppCompatActivity {
                 this, android.R.layout.simple_list_item_1, monthlyEvents);
         eventsList.setAdapter(arrayAdapter);
 
+    }
+
+    public void highlightCurrentDay(MaterialCalendarView widget){
+        CalendarDay calDay = CalendarDay.from(
+                CalendarDay.today().getYear(),
+                CalendarDay.today().getMonth(),
+                CalendarDay.today().getDay()
+        );
+        widget.setDateSelected(calDay, true);
+    }
+
+    public void calendarChangeAlert (){
+        Toast.makeText(this, "Refreshed Events", Toast.LENGTH_SHORT).show();
     }
 
     public void switchToCalculator(View view) {

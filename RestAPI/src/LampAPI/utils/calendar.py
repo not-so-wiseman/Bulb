@@ -149,7 +149,7 @@ class Calendar:
     def _return_event_template(self, name, calendar_date):
         assert type(calendar_date) == CalendarDate
         return {
-            "Name": name, 
+            "Name": name.capitalize(), 
             "Year": calendar_date.year,
             "Month": self._month(calendar_date.month) ,
             "Day": calendar_date.day
