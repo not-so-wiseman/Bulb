@@ -162,7 +162,7 @@ class Lamp:
         data_stream = self._get(route).content
         
         calendar = Calendar()
-        calendar.add_events(data_stream)
+        calendar.add_events_by_stream(data_stream)
 
         return calendar
 
