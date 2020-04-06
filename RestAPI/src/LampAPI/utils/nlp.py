@@ -3,7 +3,6 @@ import re
 def find_syllabus(toc_json):
     assert type(toc_json) == dict
     table_of_contents = toc_json["Modules"]
-    assert type(table_of_contents) == list
 
     title = r"(admin|syllabus|outline|general|course|information)"
     outline = r"(syllabus|outline)"
@@ -24,7 +23,7 @@ def find_syllabus(toc_json):
 
     topic_id = None
     for topic in topic_list:
-        if match(topic["url"], outline):
+        if match(topic["Url"], outline):
             topic_id = topic["TopicId"]
 
     assert topic_list != None
