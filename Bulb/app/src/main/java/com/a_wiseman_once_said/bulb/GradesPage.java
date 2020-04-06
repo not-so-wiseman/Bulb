@@ -80,9 +80,14 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
 
             try {
                 JSONObject gradesData = new JSONObject(result);
-                JSONObject overallJSON = gradesData.getJSONObject("Overall");
-                setDescription(overallJSON);
-                setOverallPanels(overallJSON);
+
+                RESULT_JSON = new JSONObject(result);
+
+                JSONObject currentCourse = RESULT_JSON.getJSONArray("CourseData").optJSONObject(0);
+                updateData(currentCourse);
+
+                updateCourseUI();
+                updateOverallUI();
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -99,37 +104,22 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         calculatorBtn.setBackground(getResources().getDrawable(R.drawable.ic_calculator_icon_disabled));
 
         GradesPage.FetchURL getUrl = new GradesPage.FetchURL();
+        String endpoint = buildEndPoint("grades-all");
         try {
-            String endpoint = buildEndPoint("grades-all");
             String result = getUrl.execute(endpoint).get();
-            RESULT_JSON = new JSONObject(result);
-            JSONObject currentCourse = RESULT_JSON.getJSONArray("CourseData").optJSONObject(0);
-
-            updateData(currentCourse);
-            updateUI();
-
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
+
     }
 
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item1:
-                Toast.makeText(this, "Refreshed Page", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.item2:
-                Toast.makeText(this, "Refreshed Page", Toast.LENGTH_SHORT).show();
-                return true;
-            default:
-                return false;
-        }
+        Toast.makeText(this, "Refreshed Page", Toast.LENGTH_SHORT).show();
+        return true;
     }
 
     public void showMenu(View btn) throws JSONException {
@@ -145,7 +135,6 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
             menuOptions.getItem(i).setTitle(courseName);
             menuOptions.getItem(i).setVisible(true);
         }
-
         popup.show();
     }
 
@@ -170,26 +159,6 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         return endPoint;
     }
 
-    public void setDescription(JSONObject overallJSON) throws JSONException {
-        String overallAverage = overallJSON.getString("Average");
-        String achieve = "40%";
-        String average = "Your average is ".concat(overallAverage);
-        String goal = " you need to get a ".concat(achieve).concat(
-                " in the remaining course material to make promotion.");
-        average = average.concat(goal);
-        setText(R.id.description, average);
-    }
-
-    public void setOverallPanels(JSONObject overallJSON) throws JSONException {
-        String overallRemaining = overallJSON.getString("Remaining");
-        String overallAverage = overallJSON.getString("Average");
-        setText(R.id.average, overallAverage);
-        setText(R.id.remaining, overallRemaining);
-    }
-
-    public JSONObject filterForCourse(JSONArray courses) {
-        return null;
-    }
 
     public ArrayList<String> getStringofGrades() throws JSONException {
         ArrayList<String> grades = new ArrayList<String>();
@@ -199,7 +168,7 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
             String name = gradeItem.getString("Name");
             String points = gradeItem.getString("Points");
             String percent = gradeItem.getString("Percent").concat("%");
-            grades.add(name.concat("            ").concat(points).concat("    ").concat(percent));
+            grades.add(name + "    " + points + "    " + percent);
         }
 
         return grades;
@@ -211,7 +180,22 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         COURSE_GRADES = currentCourse.getJSONArray("Grades");
     }
 
-    public void updateUI() throws JSONException {
+    public void updateOverallUI() throws JSONException {
+        JSONObject overall = RESULT_JSON.getJSONObject("Overall");
+
+        // Updates first two panels
+        String overallAverage = overall.getString("Average");
+        setText(R.id.average, overallAverage);
+        String overallRemaining = overall.getString("Remaining");
+        setText(R.id.remaining, overallRemaining);
+
+        String promotion = overall.getString("Promotion");
+        String description = "Your average is " + overallAverage + " you need to get a "
+                + promotion + " in the remaining course material to make promotion.";
+        setText(R.id.description, description);
+    }
+
+    public void updateCourseUI() throws JSONException {
         // Set button name
         Button btn = (Button) findViewById(R.id.courseBtn);
         btn.setText(COURSE_NAME);
@@ -232,6 +216,12 @@ public class GradesPage extends AppCompatActivity implements PopupMenu.OnMenuIte
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_list_item_1, grades);
         gradeList.setAdapter(arrayAdapter);
+
+
+    }
+
+    public void updateGoal() {
+
     }
 
     public void switchToCalendar(View view) {

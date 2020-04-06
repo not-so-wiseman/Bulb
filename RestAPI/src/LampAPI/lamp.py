@@ -119,7 +119,8 @@ class Lamp:
         grades_json = {
             "Overall": {
                 "Average": self._percentage(self.overall_average()),
-                "Remaining": self._percentage(self.overall_remaining())
+                "Remaining": self._percentage(self.overall_remaining()),
+                "Promotion": self._percentage(65)
             },
             "CourseData": None
         }
