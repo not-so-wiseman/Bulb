@@ -30,6 +30,7 @@ def validate_api(endpoint_func):
 def home():
     return render_template('home.html')
 
+
 @app.route('/auth', methods=['GET'])
 def authenticate():
     auth = Authenticate()
@@ -46,6 +47,7 @@ def courses(api):
     except Exception as e:
         return str("[{}] {}".format(500,e))
 
+# Grade information routes
 
 @app.route('/api/grades-all', methods=['GET'])
 @validate_api
@@ -60,27 +62,17 @@ def course_goal(api, org_unit):
     return api.achieve_goal(course_no=org_unit, goal=goal)
 
 
+# Calendar information routes
+
+@app.route('/api/<org_unit>/calendar', methods=['GET'])
+@validate_api
+def get_topics(api, org_unit):
+    calendar = api.course_calendar(org_unit)
+    return json.dumps(calendar.dates) 
+
+
 @app.route('/api/calendar', methods=['GET'])
 @validate_api
 def get_topics(api):
-    dummyCalendar = {
-        "1": [],
-        "2": [],
-        "3": [
-            {"Name":"Assignment 1 Due", "Month": "March" ,"Day":15},
-            {"Name":"Midterm", "Month": "March", "Day":20}
-        ],
-        "4": [
-            {"Name":"Assignment 2 Due", "Month": "April", "Day":27},
-            {"Name":"Quiz 1", "Month": "April", "Day":3}
-        ],
-        "5": [],
-        "6": [],
-        "7":[],
-        "8":[],
-        "9":[],
-        "10": [],
-        "11": [],
-        "12": []
-    }
-    return json.dumps(dummyCalendar) 
+    calendars = api.calendar_full()
+    return json.dumps(calendars.dates) 

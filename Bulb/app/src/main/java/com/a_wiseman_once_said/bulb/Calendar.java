@@ -1,19 +1,20 @@
 package com.a_wiseman_once_said.bulb;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,28 +25,24 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.DateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class Calendar extends AppCompatActivity implements CalendarView.OnDateChangeListener{
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
+
+public class Calendar extends AppCompatActivity {
 
     private static JSONObject CALENDAR;
 
-    @Override
-    public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-        try {
-            updateEvents(month);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
-
+        Toast.makeText(this, "BUTTon", Toast.LENGTH_SHORT).show();
     }
 
     // Fetches JSON from Bulb's API
@@ -82,26 +79,48 @@ public class Calendar extends AppCompatActivity implements CalendarView.OnDateCh
 
     }
 
+    public void TOASTY (){
+        Toast.makeText(this, "Changed Date", Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
+
+        MaterialCalendarView calendarView = (MaterialCalendarView) findViewById(R.id.calendarView);
+        calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
+            @Override
+            public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+
+                int month = date.getMonth();
+                try {
+                    updateEvents(month, widget);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
         Button calendarBtn = (Button) findViewById(R.id.calendarBtn);
         calendarBtn.setBackground(getResources().getDrawable(R.drawable.ic_calendar_icon_disabled));
 
-        Calendar.FetchURL getUrl = new Calendar.FetchURL();
+        FetchURL getUrl = new FetchURL();
         try {
             String endpoint = buildEndPoint("calendar");
             String result = getUrl.execute(endpoint).get();
             CALENDAR = new JSONObject(result);
-            updateEvents(4);
+
+            int currentMonth = CalendarDay.today().getMonth();
+            updateEvents(currentMonth, calendarView);
+
         } catch (JSONException | ExecutionException | InterruptedException e) {
             e.printStackTrace();
          }
 
     }
-
 
     public String getToken() {
         SharedPreferences sharedPref = this.getSharedPreferences("com.a_wiseman_once_said.bulb", Context.MODE_PRIVATE);
@@ -117,7 +136,8 @@ public class Calendar extends AppCompatActivity implements CalendarView.OnDateCh
         return endPoint;
     }
 
-    public void updateEvents(int monthNum) throws JSONException {
+
+    public void updateEvents(int monthNum, MaterialCalendarView widget) throws JSONException {
         String month = String.valueOf(monthNum);
         JSONArray events = CALENDAR.getJSONArray(month);
 
@@ -125,13 +145,22 @@ public class Calendar extends AppCompatActivity implements CalendarView.OnDateCh
 
         ArrayList<String> monthlyEvents = new ArrayList<String>();
 
+        int year = CalendarDay.today().getYear();
 
         for( int i = 0; i < events.length(); i++ ){
             JSONObject aEvent = events.getJSONObject(i);
-            String eventName = aEvent.getString("Name").concat("\n");
-            String eventDate = aEvent.getString("Month") + " " + aEvent.getString("Day");
-            monthlyEvents.add(eventName + eventDate);
+
+            String eventName = aEvent.getString("Name");
+            String eventDayStr = aEvent.getString("Day");
+            String eventMonthStr = aEvent.getString("Month");
+
+            monthlyEvents.add(eventName + "\n" + eventMonthStr + " " + eventDayStr);
+
+            CalendarDay calDay = CalendarDay.from(year, monthNum, Integer.parseInt(eventDayStr));
+            widget.setDateSelected(calDay, true);
         }
+
+
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_list_item_1, monthlyEvents);

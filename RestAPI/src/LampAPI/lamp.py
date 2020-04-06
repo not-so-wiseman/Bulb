@@ -8,7 +8,8 @@ from copy import deepcopy
 from .config import Config
 from .utils.courses import Courses, Course
 from .utils.gradulator import CourseGrades
-from .utils.calendar import DataScrubber, PDF
+from .utils.calendar import DataScrubber, PDF, Calendar
+from .utils.nlp import find_syllabus
 
 D2L_LEARNING_ENV = "/d2l/api/le/1.42/"
 D2L_LEARNING_PLATFORM = "/d2l/api/lp/1.26/"
@@ -136,27 +137,45 @@ class Lamp:
 
         return json.dumps(grades_json)
             
-"""
+
     # Calendar
-    def _return_topics(self, course_org_unit):
-        #https://online.mun.ca/d2l/api/le/1.0/332969/content/toc
-        #https://online.mun.ca/d2l/api/le/1.42/335419/content/topics/3138479/file?stream=true
+    def _return_topic_id(self, course_org_unit):
+        #ex: https://online.mun.ca/d2l/api/le/1.0/332969/content/toc
         route = "{}{}/content/toc".format(
             D2L_LEARNING_ENV,
             course_org_unit
         )
         request = self._get(route)
-        return request.json()
+        topic_id = find_syllabus(request.json())
+        return topic_id
 
-    def calendar(self, course_org_unit):
+    def course_calendar(self, course_org_unit):
+        topic_id = self._return_topic_id(course_org_unit)
+
+        #ex: https://online.mun.ca/d2l/api/le/1.42/335419/content/topics/3138479/file
         route = "{}{}/content/topics/{}/file".format(
             D2L_LEARNING_ENV,
             course_org_unit,
-            3065118
+            topic_id
         )
-        request = self._get(route)
-        return Calendar(request.content)
-"""
+        data_stream = self._get(route).text
+        
+        calendar = Calendar()
+        calendar.add_events(data_stream)
+
+        return calendar
+
+    def calendar_full(self):
+        org_units = self.org_units()
+
+        full_calendar = Calendar()
+        for course_id in org_units:
+            full_calendar += self.course_calendar(course_id)
+
+        return full_calendar
+
+
+
 
 
 
