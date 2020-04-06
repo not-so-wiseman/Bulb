@@ -9,7 +9,7 @@ def find_syllabus(toc_json):
     outline = r"(syllabus|outline)"
 
     def match(title, pattern):
-        match = re.search(pattern, title.lower)
+        match = re.search(pattern=pattern, string=title.lower())
         if match:
             return True
         else:
