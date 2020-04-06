@@ -1,8 +1,11 @@
 import re
 
 def find_syllabus(toc_json):
+    assert type(toc_json) == dict
     table_of_contents = toc_json["Modules"]
-    title = r"(admin|outline|general|course|information)"
+    assert type(table_of_contents) == list
+
+    title = r"(admin|syllabus|outline|general|course|information)"
     outline = r"(syllabus|outline)"
 
     def match(title, pattern):

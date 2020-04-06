@@ -139,6 +139,7 @@ class Lamp:
             
 
     # Calendar
+
     def _return_topic_id(self, course_org_unit):
         #ex: https://online.mun.ca/d2l/api/le/1.0/332969/content/toc
         route = "{}{}/content/toc".format(
@@ -158,7 +159,7 @@ class Lamp:
             course_org_unit,
             topic_id
         )
-        data_stream = self._get(route).text
+        data_stream = self._get(route).content
         
         calendar = Calendar()
         calendar.add_events(data_stream)
