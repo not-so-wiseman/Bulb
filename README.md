@@ -23,6 +23,7 @@ What things you need to install the software and how to install them
 <img src="/screenshots/b_install_anyway.png" width="150"/>
 5. You will get another warning, "Send app for scanning", click **don't send** to go to the app installation. 
 <img src="/screenshots/c_no_report.png" width="150"/> 
+
 6. To use the app follow the instructions under [**Using the App**](#using-the-app)
 
 
@@ -54,6 +55,15 @@ Bulb is currently connected to MUN's D2L test server. To explore the app use one
 <img src="/screenshots/6_nav_to_calendar.png" width="150"/>
 6. On the "My Calendar" page you will see a monthly calendar with the current date highlighted. Click the arrows above the calendar to change the calendar month.
 <img src="/screenshots/7_calandar_home.png" width="150"/>
+7. The "My Calendar" page has two main features:
+  1. A calendar with all upcoming events highlighted in blue
+  2. A list of all upcoming events and their due dates
+<img src="/screenshots/8_calendar_events.png" width="150"/>
+8. To see the events set for this month scroll to the buttom of the page to view **Upcoming Events**
+<img src="/screenshots/9_calendar_list.png" width="150"/>
+
+# File Structure 
+
 
 # Authors
 * Emily Wiseman
