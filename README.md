@@ -15,7 +15,7 @@ What things you need to install the software and how to install them
 - [ ] To view the project in your browser you will need a stable version of Chrome
 
 ### Android Phone
-1. Download the app's APK file [__**Bulb.apk**__](/Bulb.apk) from the main folder. 
+1. Download the app's APK file [__**Bulb.apk**__](https://github.com/not-so-wiseman/Bulb/blob/master/bulb.apk) from the main folder. 
 
 2. Transfer the APK file onto your Android phone.
 
@@ -48,15 +48,15 @@ You can loggin to see the student's full mock D2L account at [muntest.brightspac
 0. When the app opens click the **Login** button to start
 
 1. To get started log in a student by clicking **D2L-only login**, enter the student's credentials and then press login.
-<img src="/screenshots/1_d2l_login_page.png" width="150"/>  <img src="/screenshots/2_press_login.png" width="150"/>
+<img src="/screenshots/1_d2l_login_page.png" width="150"/>    <img src="/screenshots/2_press_login.png" width="150"/>
 
 2. On Bulb's first page you can view the student's grades. You will see the student's overall average, what percentage of course material (overall) remains to be completed, and details for each course. To change the course details displayed click the course name. A dropdown will appear with other courses to choose from ( :heavy_exclamation_mark: this isn't applicable for the demo).
 <img src="/screenshots/3_select_course.png" width="150"/>
 
 3. Scroll down the "My Grades" page to see more. For each course you will see
-:one: What the student needs to reach their goal for the course and an edit button to change the course goal
-:two: The student's average for the course.
-:three: All grade items for the course and their grades
+    :one: What the student needs to reach their goal for the course and an edit button to change the course goal  
+    :two: The student's average for the course.  
+    :three: All grade items for the course and their grades  
 <img src="/screenshots/4_grades_page.png" width="150"/>
 
 4. Click the edit button to change the goal average for the course.
@@ -69,8 +69,8 @@ You can loggin to see the student's full mock D2L account at [muntest.brightspac
 <img src="/screenshots/7_calandar_home.png" width="150"/>
 
 7. The "My Calendar" page has two main features:
-:one: A calendar with all upcoming events highlighted in blue
-:two: A list of all upcoming events and their due dates
+    :one: A calendar with all upcoming events highlighted in blue
+    :two: A list of all upcoming events and their due dates
 <img src="/screenshots/8_calendar_events.png" width="150"/>
 
 8. To see the events set for this month scroll to the buttom of the page to view **Upcoming Events**
