@@ -150,11 +150,23 @@
                 android:layout_margin="32dp"
                 android:layout_height="match_parent">
 
+                <Button
+                    android:id="@+id/courseBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:onClick="showMenu"
+                    android:text="Course Name"
+                    android:textColor="#AAAAAA"
+                    android:background="#E1E1E1"
+                    android:textSize="14sp" />
+
                 <ImageView
                     android:id="@+id/mainPanel"
                     android:layout_width="fill_parent"
                     android:layout_height="485dp"
                     android:layout_gravity="center"
+                    app:layout_constraintTop_toTopOf="@+id/courseBtn"
                     app:srcCompat="@drawable/ic_empty_card" />
 
                 <TextView
@@ -168,17 +180,6 @@
                     android:layout_marginTop="270dp"
                     android:layout_gravity="center|top"
                     android:textSize="16sp" />
-
-                <Button
-                    android:id="@+id/courseBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_medium"
-                    android:onClick="showMenu"
-                    android:text="Course Name"
-                    android:textColor="#AAAAAA"
-                    android:background="#E1E1E1"
-                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/courseAverage"
@@ -196,23 +197,25 @@
                     android:id="@+id/editBtn"
                     android:layout_width="35dp"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="290dp"
-                    android:layout_marginRight="40dp"
+                    android:layout_gravity="right|top"
                     android:layout_marginTop="60dp"
+                    android:layout_marginRight="32dp"
                     android:background="@drawable/ic_edit"
                     android:onClick="updateGoalMenu"
                     app:layout_constraintBottom_toBottomOf="@id/courseBtn"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/courseInfo"
                     app:layout_constraintTop_toTopOf="@+id/courseBtn"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    />
 
                 <TextView
                     android:id="@+id/courseInfo"
-                    android:layout_width="239dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"
+                    android:layout_marginRight="67dp"
                     android:layout_marginTop="60dp"
                     app:layout_constraintEnd_toEndOf="@+id/editBtn"
                     android:fontFamily="@font/roboto_medium"
@@ -229,7 +232,7 @@
                     android:layout_marginTop="100dp"
                     android:progress="80"
                     android:progressDrawable="@drawable/circle"
-                    app:layout_constraintTop_toBottomOf="@+id/courseInfo"></ProgressBar>
+                    app:layout_constraintTop_toBottomOf="@+id/courseInfo" />
 
                 <ListView
                     android:id="@+id/gradeItems"
@@ -239,7 +242,7 @@
                     android:layout_gravity="center|top"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
-                    app:layout_constraintTop_toBottomOf="@+id/courseAverageText"></ListView>
+                    app:layout_constraintTop_toBottomOf="@+id/courseAverageText" />
 
             </FrameLayout>
 
