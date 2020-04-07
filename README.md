@@ -19,17 +19,18 @@ What things you need to install the software and how to install them
 2. Transfer the APK file onto your Android phone.
 3. Under your phone's __**Downloads folder**__ select the file and click **install** when prompted. 
 <img src="/screenshots/a_install.png" width="150"/>
-5. Your will get a warning, "Blocked by Play Protect", saying the app's developer is not recognized. This is because the app is not on the play store and we have not registered as developers. Click **install anyway** to go ahead with the installation.
+4. Your will get a warning, "Blocked by Play Protect", saying the app's developer is not recognized. This is because the app is not on the play store and we have not registered as developers. Click **install anyway** to go ahead with the installation. 
 <img src="/screenshots/b_install_anyway.png" width="150"/>
-6. You will get another warning, "Send app for scanning", click **don't send** to go to the app installation.
-<img src="/screenshots/c_no_report.png" width="150"/>
-7. To use the app follow the instructions under [__**Using the App**__](#using-the-app)
+5. You will get another warning, "Send app for scanning", click **don't send** to go to the app installation. 
+<img src="/screenshots/c_no_report.png" width="150"/> 
+6. To use the app follow the instructions under [**Using the App**](#using-the-app)
+
 
 ### Browser
 1. Go to [Appetize.io](https://appetize.io/embed/wttkyjxwuvk1x6rmeua3v94kt4?device=pixel4&scale=100&orientation=portrait&osVersion=10.0&deviceColor=white). Appetize.io simulates android apps in the browser, this link will bring you to a custom simulator for Bulb (i.e. the APK is already setup and ready to start)
-2. To use the app follow the instructions under [__**Using the App**__](#using-the-app)
+2. To use the app follow the instructions under [**Using the App**](#using-the-app)
 
-# Using the App
+## Using the App
 Bulb is currently connected to MUN's D2L test server. To explore the app use one of the fictional students from the table below. Each student is registered to one course called "Wiseman/James APP Development" 
 
 | no. | Username      | Password      |
@@ -39,7 +40,7 @@ Bulb is currently connected to MUN's D2L test server. To explore the app use one
 
 0. When the app opens click the **Login** button to start
 1. To get started log in a student by clicking **D2L-only login**, enter the student's credentials and then press login.
-<img src="/screenshots/1_d2l_login_page.png" width="150"/><img src="/screenshots/2_press_login.png" width="150"/>
+<img src="/screenshots/1_d2l_login_page.png" width="150"/>  <img src="/screenshots/2_press_login.png" width="150"/>
 2. On Bulb's first page you can view the student's grades. You will see the student's overall average, what percentage of course material (overall) remains to be completed, and details for each course. To change the course details displayed click the course name. A dropdown will appear with other courses to choose from (:alert: this isn't applicable for the demo).
 <img src="/screenshots/3_select_course.png" width="150"/>
 3. Scroll down the "My Grades" page to see more. For each course you will see
@@ -52,7 +53,7 @@ Bulb is currently connected to MUN's D2L test server. To explore the app use one
 5. Next, explore the "My Calendar" page by clicking the calendar button in the top-right corner.
 <img src="/screenshots/6_nav_to_calendar.png" width="150"/>
 6. On the "My Calendar" page you will see a monthly calendar with the current date highlighted. Click the arrows above the calendar to change the calendar month.
-<img src="/screenshots/8_calendar_events.png" width="150"/>
+<img src="/screenshots/7_calandar_home.png" width="150"/>
 
 # Authors
 * Emily Wiseman
