@@ -2,7 +2,7 @@
 
 # Bulb
 <img src="Logo.png" width="200"/>
-Bulb is a simple companion app for Brightspace © D2L. Students can easiliy view upcoming course events and statistics on their grades all without entering any data! 
+Bulb is a simple companion app for Brightspace :copyright: D2L. Students can easiliy view upcoming course events and statistics on their grades all without entering any data! 
 
 ## Getting Started
 These instructions will help you get a copy of the project up and running in your browser or android phone.
@@ -10,9 +10,9 @@ These instructions will help you get a copy of the project up and running in you
 ### Prerequisites
 What things you need to install the software and how to install them
 
-* A stable internet connection
-* If you are using an Android phone to view the project you will need to have at least version Jelly Bean (SDK version 16) of Android OS installed.
-* To view the project in your browser you will need a stable version of Chrome
+-[ ] A stable internet connection
+-[ ] If you are using an Android phone to view the project you will need to have at least version Jelly Bean (SDK version 16) of Android OS installed.
+-[ ] To view the project in your browser you will need a stable version of Chrome
 
 ### Android Phone
 1. Download the app's APK file [__**Bulb.apk**__](Bulb.apk) from the main folder. 
@@ -53,11 +53,9 @@ Bulb is currently connected to MUN's D2L test server. To explore the app use one
 <img src="/screenshots/3_select_course.png" width="150"/>
 
 3. Scroll down the "My Grades" page to see more. For each course you will see
-    
-    1. What the student needs to reach their goal for the course and an edit button to change the course goal
-    2. The student's average for the course.
-    3. All grade items for the course and their grades
-    
+:one: What the student needs to reach their goal for the course and an edit button to change the course goal
+:two: The student's average for the course.
+:three: All grade items for the course and their grades
 <img src="/screenshots/4_grades_page.png" width="150"/>
 
 4. Click the edit button to change the goal average for the course.
@@ -70,14 +68,12 @@ Bulb is currently connected to MUN's D2L test server. To explore the app use one
 <img src="/screenshots/7_calandar_home.png" width="150"/>
 
 7. The "My Calendar" page has two main features:
-
-    1. A calendar with all upcoming events highlighted in blue
-    2. A list of all upcoming events and their due dates
-
+:one: A calendar with all upcoming events highlighted in blue
+:two: A list of all upcoming events and their due dates
 <img src="/screenshots/8_calendar_events.png" width="150"/>
 
 8. To see the events set for this month scroll to the buttom of the page to view **Upcoming Events**
-<img src="/screenshots/9_calendar_list.png" width="150"/>
+<img src="/screenshots/9_calenadar_list.png" width="150"/>
 
 # File Structure 
 
