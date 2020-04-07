@@ -25,6 +25,7 @@ What things you need to install the software and how to install them
 <img src="/screenshots/c_no_report.png" width="150"/>
 7. To use the app follow the instructions under [**Using the App**](#using-the-app)
 
+
 ### Browser
 1. Go to [Appetize.io](https://appetize.io/embed/wttkyjxwuvk1x6rmeua3v94kt4?device=pixel4&scale=100&orientation=portrait&osVersion=10.0&deviceColor=white). Appetize.io simulates android apps in the browser, this link will bring you to a custom simulator for Bulb (i.e. the APK is already setup and ready to start)
 2. To use the app follow the instructions under [**Using the App**](#using-the-app)
