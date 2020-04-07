@@ -29,7 +29,7 @@ What things you need to install the software and how to install them
 1. Go to [Appetize.io](https://appetize.io/embed/wttkyjxwuvk1x6rmeua3v94kt4?device=pixel4&scale=100&orientation=portrait&osVersion=10.0&deviceColor=white). Appetize.io simulates android apps in the browser, this link will bring you to a custom simulator for Bulb (i.e. the APK is already setup and ready to start)
 2. To use the app follow the instructions under [__**Using the App**__](#using-the-app)
 
-# Using the App
+## Using the App
 Bulb is currently connected to MUN's D2L test server. To explore the app use one of the fictional students from the table below. Each student is registered to one course called "Wiseman/James APP Development" 
 
 | no. | Username      | Password      |
@@ -52,7 +52,7 @@ Bulb is currently connected to MUN's D2L test server. To explore the app use one
 5. Next, explore the "My Calendar" page by clicking the calendar button in the top-right corner.
 <img src="/screenshots/6_nav_to_calendar.png" width="150"/>
 6. On the "My Calendar" page you will see a monthly calendar with the current date highlighted. Click the arrows above the calendar to change the calendar month.
-<img src="/screenshots/8_calendar_events.png" width="150"/>
+<img src="/screenshots/7_calendar_events.png" width="150"/>
 
 # Authors
 * Emily Wiseman
