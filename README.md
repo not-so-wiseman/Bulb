@@ -80,7 +80,23 @@ You can loggin to see the student's full mock D2L account at [muntest.brightspac
 8. To see the events set for this month scroll to the buttom of the page to view **Upcoming Events**
 <img src="/screenshots/9_calendar_list.png" width="150"/>
 
+# Project Archetice
+The design for Bulb can be viewed in two parts:
+
+1. the backend API
+2. the android application.
+
+The backend for Bulb is a custom RESTful API designed in Flask and hosted on Heroku. This API provides the
+data used by the android application.
+
+The android app acts as the user interface for Bulb. In the future a web site will be added. 
+
+The diagram below illustrates the relationship between Bulb's two parts:
+
+<img src="/project_diagram.png" width="250"/>
+
 # File Structure 
+
 
 
 # Authors
