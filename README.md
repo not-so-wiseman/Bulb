@@ -96,8 +96,39 @@ The diagram below illustrates the relationship between Bulb's two parts:
 <img src="/project_diagram.png" width="250"/>
 
 # File Structure 
+Below is a simplied file structure tree of the project with notable files highlighted.
 
-
+├───assests
+├───Bulb *Android App Folder*
+|   ├───build
+|   ├───gradle
+│   └───app
+│       └───src
+│           └───main
+│               ├───res
+│               └───java
+│                   └───com
+│                       └───a_wiseman_once_said
+│                           └───bulb
+│                               └─── **Calendar.java** *Logic for My Calendar Page**
+│                               └─── editGradeLogic.java *Code for the popup dialog "edit grades"*
+│                               └─── **GradesPage.java** *Logic for My Grades Page*
+│                               └─── **Login.java** *Logic for Logging a user in*
+│                               └─── MainActivity.java *Splash page*
+└───RestAPI
+    ├───docs
+    └───src
+        ├───**app.py** *main entry for the Flask application (i.e. serves the REST API)*
+        ├───LampAPI
+        │   ├───utils
+        │   │   └─── **calendar.py**
+        │   │   └─── **courses.py**
+        │   │   └─── **gradulator.py**
+        │   │   └─── **nlp.py**
+        │   ├─── **authenticate.py**
+        │   ├─── **config.py**
+        │   └─── **lamp.py**
+        └─── templates *contains HTML pages*
 
 # Authors
 * Emily Wiseman
