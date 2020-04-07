@@ -10,12 +10,12 @@ These instructions will help you get a copy of the project up and running in you
 ### Prerequisites
 What things you need to install the software and how to install them
 
--[ ] A stable internet connection
--[ ] If you are using an Android phone to view the project you will need to have at least version Jelly Bean (SDK version 16) of Android OS installed.
--[ ] To view the project in your browser you will need a stable version of Chrome
+- [ ] A stable internet connection
+- [ ] If you are using an Android phone to view the project you will need to have at least version Jelly Bean (SDK version 16) of Android OS installed.
+- [ ] To view the project in your browser you will need a stable version of Chrome
 
 ### Android Phone
-1. Download the app's APK file [__**Bulb.apk**__](Bulb.apk) from the main folder. 
+1. Download the app's APK file [__**Bulb.apk**__](/Bulb.apk) from the main folder. 
 
 2. Transfer the APK file onto your Android phone.
 
@@ -37,7 +37,8 @@ What things you need to install the software and how to install them
 2. To use the app follow the instructions under [**Using the App**](#using-the-app)
 
 ## Using the App
-Bulb is currently connected to MUN's D2L test server. To explore the app use one of the fictional students from the table below. Each student is registered to one course called "Wiseman/James APP Development" 
+Bulb is currently connected to MUN's D2L test server. To explore the app use one of the fictional students from the table below. Each student is registered to one course called "Wiseman/James APP Development". 
+You can loggin to see the student's full mock D2L account at [muntest.brightspace.com](https://muntest.brightspace.com/d2l/)
 
 | no. | Username      | Password      |
 | ---:|:-------------:|:-------------:|
@@ -49,7 +50,7 @@ Bulb is currently connected to MUN's D2L test server. To explore the app use one
 1. To get started log in a student by clicking **D2L-only login**, enter the student's credentials and then press login.
 <img src="/screenshots/1_d2l_login_page.png" width="150"/>  <img src="/screenshots/2_press_login.png" width="150"/>
 
-2. On Bulb's first page you can view the student's grades. You will see the student's overall average, what percentage of course material (overall) remains to be completed, and details for each course. To change the course details displayed click the course name. A dropdown will appear with other courses to choose from ( :heavy_exclamation_mark: this isn't applicable for the demo :heavy_exclamation_mark:).
+2. On Bulb's first page you can view the student's grades. You will see the student's overall average, what percentage of course material (overall) remains to be completed, and details for each course. To change the course details displayed click the course name. A dropdown will appear with other courses to choose from ( :heavy_exclamation_mark: this isn't applicable for the demo).
 <img src="/screenshots/3_select_course.png" width="150"/>
 
 3. Scroll down the "My Grades" page to see more. For each course you will see
