@@ -53,10 +53,12 @@ You can loggin to see the student's full mock D2L account at [muntest.brightspac
 2. On Bulb's first page you can view the student's grades. You will see the student's overall average, what percentage of course material (overall) remains to be completed, and details for each course. To change the course details displayed click the course name. A dropdown will appear with other courses to choose from ( :heavy_exclamation_mark: this isn't applicable for the demo).
 <img src="/screenshots/3_select_course.png" width="150"/>
 
-3. Scroll down the "My Grades" page to see more. For each course you will see
+3. Scroll down the "My Grades" page to see more. For each course you will see:
+
     :one: What the student needs to reach their goal for the course and an edit button to change the course goal  
     :two: The student's average for the course.  
     :three: All grade items for the course and their grades  
+    
 <img src="/screenshots/4_grades_page.png" width="150"/>
 
 4. Click the edit button to change the goal average for the course.
@@ -69,8 +71,10 @@ You can loggin to see the student's full mock D2L account at [muntest.brightspac
 <img src="/screenshots/7_calandar_home.png" width="150"/>
 
 7. The "My Calendar" page has two main features:
+
     :one: A calendar with all upcoming events highlighted in blue  
     :two: A list of all upcoming events and their due dates  
+    
 <img src="/screenshots/8_calenader_events.png" width="150"/>
 
 8. To see the events set for this month scroll to the buttom of the page to view **Upcoming Events**
