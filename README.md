@@ -69,12 +69,12 @@ You can loggin to see the student's full mock D2L account at [muntest.brightspac
 <img src="/screenshots/7_calandar_home.png" width="150"/>
 
 7. The "My Calendar" page has two main features:
-    :one: A calendar with all upcoming events highlighted in blue
-    :two: A list of all upcoming events and their due dates
-<img src="/screenshots/8_calendar_events.png" width="150"/>
+    :one: A calendar with all upcoming events highlighted in blue  
+    :two: A list of all upcoming events and their due dates  
+<img src="/screenshots/8_calenader_events.png" width="150"/>
 
 8. To see the events set for this month scroll to the buttom of the page to view **Upcoming Events**
-<img src="/screenshots/9_calenadar_list.png" width="150"/>
+<img src="/screenshots/9_calendar_list.png" width="150"/>
 
 # File Structure 
 
