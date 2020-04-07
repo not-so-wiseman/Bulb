@@ -1,4 +1,4 @@
-*This README.md is best read on Github at https://github.com/not-so-wiseman/Bulb/*
+:bulb: *This README.md is best read on Github at https://github.com/not-so-wiseman/Bulb/*
 
 # Bulb
 <img src="Logo.png" width="200"/>
@@ -45,9 +45,9 @@ Bulb is currently connected to MUN's D2L test server. To explore the app use one
 2. On Bulb's first page you can view the student's grades. You will see the student's overall average, what percentage of course material (overall) remains to be completed, and details for each course. To change the course details displayed click the course name. A dropdown will appear with other courses to choose from (:alert: this isn't applicable for the demo).
 <img src="/screenshots/3_select_course.png" width="150"/>
 3. Scroll down the "My Grades" page to see more. For each course you will see
-  1. What the student needs to reach their goal for the course and an edit button to change the course goal
-  2. The student's average for the course.
-  3. All grade items for the course and their grades
+    1. What the student needs to reach their goal for the course and an edit button to change the course goal
+    2. The student's average for the course.
+    3. All grade items for the course and their grades
  <img src="/screenshots/4_grades_page.png" width="150"/>
 4. Click the edit button to change the goal average for the course.
 <img src="/screenshots/5_update_goal.png" width="150"/>
@@ -56,8 +56,8 @@ Bulb is currently connected to MUN's D2L test server. To explore the app use one
 6. On the "My Calendar" page you will see a monthly calendar with the current date highlighted. Click the arrows above the calendar to change the calendar month.
 <img src="/screenshots/7_calandar_home.png" width="150"/>
 7. The "My Calendar" page has two main features:
-  1. A calendar with all upcoming events highlighted in blue
-  2. A list of all upcoming events and their due dates
+    1. A calendar with all upcoming events highlighted in blue
+    2. A list of all upcoming events and their due dates
 <img src="/screenshots/8_calendar_events.png" width="150"/>
 8. To see the events set for this month scroll to the buttom of the page to view **Upcoming Events**
 <img src="/screenshots/9_calendar_list.png" width="150"/>
