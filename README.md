@@ -10,9 +10,9 @@ These instructions will help you get a copy of the project up and running in you
 ### Prerequisites
 What things you need to install the software and how to install them
 
-- [ ] A stable internet connection
-- [ ] If you are using an Android phone to view the project you will need to have at least version Jelly Bean (SDK version 16) of Android OS installed.
-- [ ] To view the project in your browser you will need a stable version of Chrome
+- [x] A stable internet connection
+- [x] If you are using an Android phone to view the project you will need to have at least version Jelly Bean (SDK version 16) of Android OS installed.
+- [x] To view the project in your browser you will need a stable version of Chrome
 
 ### Android Phone
 1. Download the app's APK file [__**Bulb.apk**__](https://github.com/not-so-wiseman/Bulb/blob/master/bulb.apk) from the main folder. 
@@ -80,8 +80,57 @@ You can loggin to see the student's full mock D2L account at [muntest.brightspac
 8. To see the events set for this month scroll to the buttom of the page to view **Upcoming Events**
 <img src="/screenshots/9_calendar_list.png" width="150"/>
 
-# File Structure 
+# Project Archetice
+The design for Bulb can be viewed in two parts:
 
+1. the backend API
+2. the android application.
+
+The backend for Bulb is a custom RESTful API designed in Flask and hosted on Heroku. This API provides the
+data used by the android application.
+
+The android app acts as the user interface for Bulb. In the future a web site will be added. 
+
+The diagram below illustrates the relationship between Bulb's two parts:
+
+<img src="/project_diagram.png" width="250"/>
+
+# File Structure 
+Below is a simplied file structure tree of the project with notable files highlighted.
+
+```
+assests
+├───Bulb *Android App Folder*
+|   ├───build
+|   ├───gradle
+│   └───app
+│       └───src
+│           └───main
+│               ├───res
+│               └───java
+│                   └───com
+│                       └───a_wiseman_once_said
+│                           └───bulb
+│                               └─── Calendar.java  //Logic for My Calendar Page**
+│                               └─── editGradeLogic.java  //Code for the popup dialog "edit grades"*
+│                               └─── GradesPage.java  //Logic for My Grades Page*
+│                               └─── Login.java  //Logic for Logging a user in
+│                               └─── MainActivity.java  //Splash page
+└───RestAPI
+    ├───docs
+    └───src
+        ├───app.py  //Main entry for the Flask application (i.e. serves the REST API)
+        ├───LampAPI
+        │   ├───utils
+        │   │   └─── calendar.py
+        │   │   └─── courses.py
+        │   │   └─── gradulator.py
+        │   │   └─── nlp.py
+        │   ├─── authenticate.py
+        │   ├─── config.py
+        │   └─── lamp.py
+        └─── templates  //Contains HTML pages*
+```
 
 # Authors
 * Emily Wiseman
