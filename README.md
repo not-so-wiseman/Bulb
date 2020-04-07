@@ -23,11 +23,11 @@ What things you need to install the software and how to install them
 <img src="/screenshots/b_install_anyway.png" width="150"/>
 6. You will get another warning, "Send app for scanning", click **don't send** to go to the app installation.
 <img src="/screenshots/c_no_report.png" width="150"/>
-7. To use the app follow the instructions under [__**Using the App**__](##using-the-app)
+7. To use the app follow the instructions under [**Using the App**](#using-the-app)
 
 ### Browser
 1. Go to [Appetize.io](https://appetize.io/embed/wttkyjxwuvk1x6rmeua3v94kt4?device=pixel4&scale=100&orientation=portrait&osVersion=10.0&deviceColor=white). Appetize.io simulates android apps in the browser, this link will bring you to a custom simulator for Bulb (i.e. the APK is already setup and ready to start)
-2. To use the app follow the instructions under [__**Using the App**__](##using-the-app)
+2. To use the app follow the instructions under [**Using the App**](#using-the-app)
 
 ## Using the App
 Bulb is currently connected to MUN's D2L test server. To explore the app use one of the fictional students from the table below. Each student is registered to one course called "Wiseman/James APP Development" 
