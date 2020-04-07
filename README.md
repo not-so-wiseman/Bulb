@@ -40,7 +40,7 @@ Bulb is currently connected to MUN's D2L test server. To explore the app use one
 
 0. When the app opens click the **Login** button to start
 1. To get started log in a student by clicking **D2L-only login**, enter the student's credentials and then press login.
-<img src="/screenshots/1_d2l_login_page.png" width="150"/><img src="/screenshots/2_press_login.png" width="150"/>
+<img src="/screenshots/1_d2l_login_page.png" width="150"/>  <img src="/screenshots/2_press_login.png" width="150"/>
 2. On Bulb's first page you can view the student's grades. You will see the student's overall average, what percentage of course material (overall) remains to be completed, and details for each course. To change the course details displayed click the course name. A dropdown will appear with other courses to choose from (:alert: this isn't applicable for the demo).
 <img src="/screenshots/3_select_course.png" width="150"/>
 3. Scroll down the "My Grades" page to see more. For each course you will see
