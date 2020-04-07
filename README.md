@@ -1,5 +1,5 @@
 # Bulb
-Bulb is a simple companion app for Brightspace (c) D2L. Students can easiliy view upcoming course events and statistics on their grades all without entering any data! 
+Bulb is a simple companion app for Brightspace © D2L. Students can easiliy view upcoming course events and statistics on their grades all without entering any data! 
 
 ## Getting Started
 These instructions will help you get a copy of the project up and running in your browser or android phone.
@@ -15,7 +15,7 @@ What things you need to install the software and how to install them
 1. Download the app's APK file __**bulb.apk**__ from the main folder. 
 2. Transfer the APK file onto an Android phone.
 3. Under your phone's Downloads folder select the file and click when prompted
-4. Follow the instructions under __**Using the App**__
+4. Follow the instructions under [__**Using the App**__](#using-the-app)
 
 ### Browser
 1. Go to [Appetize.io](https://appetize.io/embed/wttkyjxwuvk1x6rmeua3v94kt4?device=pixel4&scale=100&orientation=portrait&osVersion=10.0&deviceColor=white). Appetize.io simulates android apps in the browser, this link will bring you to a custom simulator for Bulb (i.e. the APK is already setup and ready to start)
