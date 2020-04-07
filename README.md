@@ -10,9 +10,9 @@ These instructions will help you get a copy of the project up and running in you
 ### Prerequisites
 What things you need to install the software and how to install them
 
-- [ ] A stable internet connection
-- [ ] If you are using an Android phone to view the project you will need to have at least version Jelly Bean (SDK version 16) of Android OS installed.
-- [ ] To view the project in your browser you will need a stable version of Chrome
+- [x] A stable internet connection
+- [x] If you are using an Android phone to view the project you will need to have at least version Jelly Bean (SDK version 16) of Android OS installed.
+- [x] To view the project in your browser you will need a stable version of Chrome
 
 ### Android Phone
 1. Download the app's APK file [__**Bulb.apk**__](https://github.com/not-so-wiseman/Bulb/blob/master/bulb.apk) from the main folder. 
@@ -98,7 +98,8 @@ The diagram below illustrates the relationship between Bulb's two parts:
 # File Structure 
 Below is a simplied file structure tree of the project with notable files highlighted.
 
-├───assests
+```
+assests
 ├───Bulb *Android App Folder*
 |   ├───build
 |   ├───gradle
@@ -110,25 +111,26 @@ Below is a simplied file structure tree of the project with notable files highli
 │                   └───com
 │                       └───a_wiseman_once_said
 │                           └───bulb
-│                               └─── **Calendar.java** *Logic for My Calendar Page**
-│                               └─── editGradeLogic.java *Code for the popup dialog "edit grades"*
-│                               └─── **GradesPage.java** *Logic for My Grades Page*
-│                               └─── **Login.java** *Logic for Logging a user in*
-│                               └─── MainActivity.java *Splash page*
+│                               └─── Calendar.java  //Logic for My Calendar Page**
+│                               └─── editGradeLogic.java  //Code for the popup dialog "edit grades"*
+│                               └─── GradesPage.java  //Logic for My Grades Page*
+│                               └─── Login.java  //Logic for Logging a user in
+│                               └─── MainActivity.java  //Splash page
 └───RestAPI
     ├───docs
     └───src
-        ├───**app.py** *main entry for the Flask application (i.e. serves the REST API)*
+        ├───app.py  //Main entry for the Flask application (i.e. serves the REST API)
         ├───LampAPI
         │   ├───utils
-        │   │   └─── **calendar.py**
-        │   │   └─── **courses.py**
-        │   │   └─── **gradulator.py**
-        │   │   └─── **nlp.py**
-        │   ├─── **authenticate.py**
-        │   ├─── **config.py**
-        │   └─── **lamp.py**
-        └─── templates *contains HTML pages*
+        │   │   └─── calendar.py
+        │   │   └─── courses.py
+        │   │   └─── gradulator.py
+        │   │   └─── nlp.py
+        │   ├─── authenticate.py
+        │   ├─── config.py
+        │   └─── lamp.py
+        └─── templates  //Contains HTML pages*
+```
 
 # Authors
 * Emily Wiseman
