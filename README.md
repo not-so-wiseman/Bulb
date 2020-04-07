@@ -17,13 +17,10 @@ What things you need to install the software and how to install them
 ### Android Phone
 1. Download the app's APK file [__**Bulb.apk**__](Bulb.apk) from the main folder. 
 2. Transfer the APK file onto your Android phone.
-3. Under your phone's __**Downloads folder**__ select the file and click **install** when prompted. 
-<img src="/screenshots/a_install.png" width="150"/>
-5. Your will get a warning, "Blocked by Play Protect", saying the app's developer is not recognized. This is because the app is not on the play store and we have not registered as developers. Click **install anyway** to go ahead with the installation.
-<img src="/screenshots/b_install_anyway.png" width="150"/>
-6. You will get another warning, "Send app for scanning", click **don't send** to go to the app installation.
-<img src="/screenshots/c_no_report.png" width="150"/>
-7. To use the app follow the instructions under [**Using the App**](#using-the-app)
+3. Under your phone's __**Downloads folder**__ select the file and click **install** when prompted. <img src="/screenshots/a_install.png" width="150"/>
+4. Your will get a warning, "Blocked by Play Protect", saying the app's developer is not recognized. This is because the app is not on the play store and we have not registered as developers. Click **install anyway** to go ahead with the installation. <img src="/screenshots/b_install_anyway.png" width="150"/>
+5. You will get another warning, "Send app for scanning", click **don't send** to go to the app installation. <img src="/screenshots/c_no_report.png" width="150"/>
+6. To use the app follow the instructions under [**Using the App**](#using-the-app)
 
 
 ### Browser
@@ -53,7 +50,7 @@ Bulb is currently connected to MUN's D2L test server. To explore the app use one
 5. Next, explore the "My Calendar" page by clicking the calendar button in the top-right corner.
 <img src="/screenshots/6_nav_to_calendar.png" width="150"/>
 6. On the "My Calendar" page you will see a monthly calendar with the current date highlighted. Click the arrows above the calendar to change the calendar month.
-<img src="/screenshots/7_calendar_events.png" width="150"/>
+<img src="/screenshots/7_calendar_home.png" width="150"/>
 
 # Authors
 * Emily Wiseman
